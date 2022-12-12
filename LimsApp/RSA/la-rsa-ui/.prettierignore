@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/package.json
+**/yarn.lock
+**/package-lock.json
+**/.eslintrc.json
+**/tsconfig.json
+**/src/reportWebVitals.ts
+**/src/react-app-env.d.ts
+**/src/service-worker.ts
+**/src/serviceWorkerRegistration.ts
+**/src/global.d.ts
+**/config-overrides.js

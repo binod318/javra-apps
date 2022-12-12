@@ -1,0 +1,203 @@
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+
+html,
+body,
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#rsa-root {
+  max-width: 768px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+.ant-spin-spinning {
+  max-height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    padding: 0px;
+    width: 100%;
+  }
+  #rsa-root {
+    padding: 10px;
+  }
+}
+
+@media (orientation: landscape) {
+  body {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+@media (orientation: portrait) {
+  body {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+// FIXME: move to relative style modules
+.ant-select.selectDropdown {
+  font-size: 14px;
+}
+.ant-select-item-option-content {
+  font-size: 14px;
+}
+#rsa-root .ant-input {
+  font-size: 14px;
+  color: #666;
+}
+
+body.offline span[class^='connection'] {
+  background: red;
+}
+
+body {
+  .connection {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    background: none;
+  }
+
+  &.offline {
+    .connection {
+      background: #000000;
+      border: 1px solid red;
+      &:after {
+        content: ' ';
+        position: absolute;
+        width: 60%;
+        height: 2px;
+        transform: rotate(135deg);
+        background: red;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+.ant-modal-confirm-body > .anticon + .ant-modal-confirm-title + .ant-modal-confirm-content {
+  font-size: 14px;
+}
+
+#rsa-root .ant-form-item-explain {
+  font-size: 12px;
+}
+
+.modal {
+  .ant-modal-header .ant-modal-title {
+    font-size: 16px !important;
+    line-height: 19px !important;
+  }
+  .ant-btn,
+  .ant-modal-body {
+    font-size: 14px !important;
+  }
+}
+
+.notification {
+  .ant-notification-notice-message {
+    font-size: 16px !important;
+    line-height: 19px !important;
+  }
+  .ant-notification-notice-description {
+    font-size: 14px !important;
+  }
+}
+
+#rsa-root {
+  [class|='scoreWidgetsWrapper'] {
+    .ant-col-8 {
+      flex: 0 0 33.33333333% !important;
+      max-width: 33.33333333% !important;
+    }
+    .ant-col-16 {
+      flex: 0 0 66.66666667% !important;
+      max-width: 66.66666667% !important;
+    }
+  }
+}
+
+.blinker {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  &:after {
+    content: '';
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #a2af4f;
+    // FIXME commented it out as 9999 would interfare in cases when we need another element on top of it
+    // To be specific this was done as it was overlapping toast. We need to find a sweet spot so that
+    // it wont overlap
+    // z-index: 9999;
+    transform: translateX(-100vw);
+    -webkit-animation-name: progressBar;
+    animation-name: progressBar;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    animation-iteration-count: 1;
+  }
+  h2 {
+    animation: slideIn 1s ease-in-out;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+    background: gray;
+    opacity: 0;
+  }
+}
+
+.hasError {
+  color: #cc0000;
+}

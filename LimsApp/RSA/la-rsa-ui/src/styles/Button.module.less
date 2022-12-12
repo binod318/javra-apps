@@ -1,0 +1,27 @@
+.sync,
+.download {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  &:active {
+    background: #efefef;
+  }
+  &:hover {
+    background-color: #efefef;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.actionColumn {
+  text-align: right;
+}
