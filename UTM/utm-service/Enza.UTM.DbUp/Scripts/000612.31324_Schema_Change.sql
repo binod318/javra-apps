@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS EmailConfigPerMenu
+GO
+CREATE TABLE EmailConfigPerMenu
+(	
+	Menu NVARCHAR(MAX),
+	ConfigGroup NVARCHAR(MAX)
+)
+GO
+
+INSERT INTO EmailConfigPerMenu (Menu, ConfigGroup)
+VALUES
+('UTMGeneral', 'SEND_RESULT_MAPPING_MISSING'),
+('UTMGeneral', 'CREATE_DH0_DH1_DATA_ERROR'),
+('UTMGeneral', 'EXE_ERROR'),
+('UTMGeneral', 'DEFAULT_EMAIL_GROUP'),
+('UTMGeneral', 'MOLECULAR_LAB_GROUP'),
+('UTMGeneral', 'TEST_COMPLETE_NOTIFICATION'),
+('RDT', 'RDT_TEST_COMPLETE_NOTIFICATION'),
+('RDT', 'EXE_ERROR'),
+('RDT', 'DEFAULT_EMAIL_GROUP'),
+('LeafDisk', 'TEST_COMPLETE_NEGATIVE'),
+('LeafDisk', 'TEST_COMPLETE_POSITIVE'),
+('LeafDisk', 'EXE_ERROR'),
+('LeafDisk', 'DEFAULT_EMAIL_GROUP'),
+('SeedHealth', 'TEST_COMPLETE_NEGATIVE'),
+('SeedHealth', 'TEST_COMPLETE_POSITIVE'),
+('SeedHealth', 'EXE_ERROR'),
+('SeedHealth', 'DEFAULT_EMAIL_GROUP')
+
+GO

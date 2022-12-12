@@ -1,0 +1,96 @@
+.labCapacity {
+  .fileSection {
+    grid-template-columns: 200px 250px;
+    .fileSource {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+    }
+  }
+  .w350 {
+    width: 350px;
+    display: flex;
+    label {
+      flex: 0 0 100px;
+    }
+    select {
+      flex: 0 0 250px;
+    }
+
+    padding-left: 15px;
+  }
+
+  .headerCell {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+
+
+    span {
+      display: flex;
+      flex: 1;
+      height: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #565656;
+
+      &.filterBtn {
+        flex: 0 0 30px;
+        i {
+          font-size: 16px;
+          cursor: pointer;
+          margin-left: 5px;
+          &:hover {
+            color: darken(#202a3c, 10%)
+          }
+        }
+      }
+    }
+  }
+
+  .fixedDataTableLayout_rowsContainer {
+      input, button {
+        height: 26px;
+      }
+  }
+
+  input,
+  textarea{
+    width: 100%;
+    box-shadow: none;
+
+    &:read-only {
+      background-color: #f3f3f3;
+    }
+  }
+  textarea {
+    height: 34px;
+    resize: none;
+    padding: 3px 10px;
+    line-height: 26px;
+  }
+  .fixedToRight {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button + button {
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 1400px) and (min-width: 1024px) {
+  .labCapacity {
+    .trow .tcell {
+      flex: 1 !important;
+    }
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 520px) {
+  .labCapacity {
+    .confirmBody .trow .tcell {
+      flex: 0 0 100% !important;
+    }
+  }
+}

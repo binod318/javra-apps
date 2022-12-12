@@ -1,0 +1,44 @@
+
+$linkColor: #f00;
+
+.table2 {
+    a {
+        color: $linkColor;
+    }
+}
+
+.rowSelected {
+    background: #a2e456;
+
+    /*& < div {
+        background: red;
+    }*/
+
+    .tableCheck label {
+        color: #537b25;
+    }
+}
+
+.rowFixed {
+    background: rgba(3, 169, 244, .7);
+    color: #fff;
+
+    .tableCheck label {
+        color: #fff;
+    }
+}
+
+.tableCheck {
+    height: 22px;
+    position: relative;
+    top: -1px;
+}
+
+.plateFilling {
+    .fixedDataTableLayout_main > * {
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;
+    }
+}

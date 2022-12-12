@@ -1,0 +1,9 @@
+.ctmanage {
+  display: flex;
+
+  & > div {
+    padding: 10px;
+    flex: 1;
+    outline: 1px solid green;
+  }
+}

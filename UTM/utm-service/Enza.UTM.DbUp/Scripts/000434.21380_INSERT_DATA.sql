@@ -1,0 +1,2 @@
+INSERT INTO EmailConfig (ConfigGroup,CropCode)
+VALUES('RDT_TEST_COMPLETE_NOTIFICATION','*');

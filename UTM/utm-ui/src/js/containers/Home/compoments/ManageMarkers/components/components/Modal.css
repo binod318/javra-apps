@@ -1,0 +1,40 @@
+/* model generic styles  */
+.modal--title {
+  margin-top: 0px;
+  font-size: 22px;
+  margin: 0px 0 20px 0;
+  border-bottom: 1px solid #cac9c9;
+  padding-bottom: 10px;
+  font-weight: normal;
+  font-family: "robotoregular", sans-serif;
+}
+
+.modal--close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 0px solid #666;
+  cursor: pointer;
+  color: #666;
+  font-size: 24px;
+  font-weight: normal;
+  font-family: sans-serif;
+}
+.modal--close:focus,
+.modal--close:hover {
+  color: #ff5959;
+  text-decoration: none;
+  outline: none;
+  background: none;
+}
+
+.modal-overlay {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(57, 57, 57, 0.75);
+}

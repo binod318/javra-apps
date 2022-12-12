@@ -1,0 +1,3 @@
+ALTER TABLE LD_Sample
+ADD Quantity INT
+GO

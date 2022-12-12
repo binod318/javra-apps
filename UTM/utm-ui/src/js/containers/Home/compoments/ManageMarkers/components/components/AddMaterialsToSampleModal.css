@@ -1,0 +1,27 @@
+/*  Cease Leaf Disk Sample Data Modal styles  */
+.add-materials-to-sample {
+  z-index: 10px;
+}
+
+.add-materials-to-sample label {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.add-materials-to-sample input,
+.add-materials-to-sample select {
+  margin-bottom: 10px;
+}
+.add-materials-to-sample .form-error--input {
+  border-color: red;
+}
+
+.add-materials-to-sample .form-error--label {
+  color: red;
+  padding: 0px 10px 5px 10px;
+  font-size: 12px;
+}
+
+.add-materials-to-sample .form-button {
+  margin-top: 10px;
+}

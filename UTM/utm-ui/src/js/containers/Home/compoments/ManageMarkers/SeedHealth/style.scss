@@ -1,0 +1,24 @@
+.dynamic-input input[type='number'] {
+  width: 48%;
+  height: 26px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.dynamic-input {
+  button {
+    font-size: 11px;
+    padding: 0 5px;
+    min-height: 22px;
+    height: 22px;
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+.action-delete {
+  background: none;
+  color: black;
+  &:hover {
+    background: none;
+    color: #ff5959;
+  }
+}

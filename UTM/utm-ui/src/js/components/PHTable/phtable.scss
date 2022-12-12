@@ -1,0 +1,79 @@
+.phtable {
+  .headerCell {
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+    padding: 0 0 0 10px;
+    height: 40px;
+  }
+
+  // .disable-select {
+  // }
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
+  .requested-markers {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 390px;
+    position: relative;
+  }
+}
+.tippy-tooltip-content {
+  max-width: 400px;
+  overflow: hidden;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.cell-center > div > div > div {
+  text-align: center;
+}
+.bAction > div > div > div {
+  // background: red;
+  display: flex;
+  justify-content: space-between;
+
+  i {
+    cursor: pointer;
+  }
+}
+i.icon.icon-pencil:hover {
+  color: #7eb83d;
+}
+i.icon.icon-cancel:hover {
+  color: #ff5959;
+}
+i.icon:focus {
+  outline: none;
+}
+
+.public_fixedDataTable_bodyRow .tableCheck label {
+  line-height: 22px;
+}
+
+.assign .public_fixedDataTableCell_cellContent button.tblPrintBtn {
+  background: #8bc34a;
+  height: 20px;
+  // font-size: 15px;
+  min-height: 20px;
+
+  &:disabled {
+    background: #b9b9b9;
+    color: #8c8c8c;
+  }
+}
+
+.highlight-row {
+  .tableCheck {
+    background: #a2e456;
+    height: 100px;
+  }
+  .fixedDataTableCellLayout_wrap3 {
+    // vertical-align: top;
+  }
+}

@@ -1,0 +1,3 @@
+ALTER TABLE Slot ADD TestTypeID INT
+GO
+

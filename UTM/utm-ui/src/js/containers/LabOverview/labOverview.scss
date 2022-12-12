@@ -1,0 +1,73 @@
+.laboverview {
+  .fileSection {
+    .fileSource {
+      &:first-child {
+        max-width: 200px;
+      }
+      &:last-child {
+        max-width: 350px;
+      }
+      display: grid;
+      grid-template-columns: 60px 1fr;
+    }
+  }
+  .trow:first-child .tcell {
+    max-width: 385px;
+  }
+  .w350 {
+    width: 350px;
+    display: flex;
+    label {
+      flex: 0 0 100px;
+    }
+    select {
+      flex: 0 0 250px;
+    }
+
+    padding-left: 15px;
+  }
+
+  .fixedDataTableLayout_rowsContainer input {
+    height: 34px;
+  }
+
+  input,
+  textarea{
+    width: 100%;
+    box-shadow: none;
+
+    &:read-only {
+      background-color: #f3f3f3;
+    }
+  }
+  textarea {
+    height: 34px;
+    resize: none;
+    padding: 3px 10px;
+    line-height: 26px;
+  }
+  .fixedToRight {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button + button {
+    margin-left: 10px;
+  }
+}
+
+.formFix {
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1024px) {
+  .laboverview {
+    .trow .tcell {
+      flex: 1 !important;
+    }
+  }
+}

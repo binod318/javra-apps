@@ -1,0 +1,39 @@
+.rdtprintform {
+  label {
+    margin: 0 0 0 5px;
+    cursor: pointer;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  /* to hide the checkbox itself */
+  input[type=checkbox]+label:before {
+    font-family: fontello;
+    display: inline-block;
+    width: 20px;
+  }
+
+  input[type=checkbox]+label:before {
+    content: "\f096";
+  }
+
+  /* unchecked icon */
+  input[type=checkbox]+label:before {
+    letter-spacing: 10px;
+  }
+
+  /* space between checkbox and label */
+
+  input[type=checkbox]:checked+label:before {
+    content: "\f14a";
+  }
+
+  /* checked icon */
+  input[type=checkbox]:checked+label:before {
+    letter-spacing: 10px;
+  }
+
+  /* allow space for check mark */
+}

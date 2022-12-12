@@ -1,0 +1,15 @@
+.dynamic-input {
+  margin: 5px;
+  input {
+    height: 26px;
+  }
+}
+
+.action-delete {
+  background: none;
+  color: black;
+  &:hover {
+    background: none;
+    color: #ff5959;
+  }
+}
