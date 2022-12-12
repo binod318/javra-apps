@@ -1,0 +1,617 @@
+a {
+  cursor: pointer;
+}
+
+label,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea,
+.Select-placeholder {
+  width: 100%;
+  color: #545454;
+  border-radius: 3px;
+  height: 40px;
+  height: 30px;
+  height: 24px;
+  //box-shadow: 0 0 5px #dedede inset;
+  box-shadow: 0 0 5px #dedede;
+  &:focus {
+    outline: none;
+  }
+}
+select {
+  width: auto;
+}
+textarea {
+  padding: 5px 10px;
+}
+
+label {
+  box-shadow: none;
+  font-size: 14px;
+  margin: 5px 0 5px 5px;
+  font-weight: 500;
+  line-height: 32px;
+  font-family: "robotomedium", sans-serif;
+}
+
+input {
+  border: 1px solid #ddd;
+
+  &:disabled {
+    background-color: #efefef;
+    border-color: #e4e4e4;
+  }
+}
+select,
+input {
+  padding: 0 10px;
+  font-size: 14px;
+}
+textarea,
+select {
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+.textarea {
+  padding: 0 10px;
+}
+select:disabled {
+  background: #efefef;
+  border-color: #e4e4e4;
+}
+
+input.xlsFile {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  width: inherit;
+}
+
+div.triggerFile {
+  background: #fff;
+  height: 100%;
+  min-height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b7d335;
+  border-radius: 3px 0 0 3px;
+  cursor: pointer;
+  border: #ddd 1px solid;
+  color: #3d4a5f;
+  box-shadow: 0 0 5px #dedede inset;
+}
+
+button {
+  text-decoration: none;
+  font-size: 15px;
+  color: #fff !important;
+
+  padding: 0px 10px;
+  background: $btnBg;
+
+  display: inline-block;
+  border: none;
+  border-radius: 2px;
+  height: 40px;
+  height: 30px;
+  height: 24px;
+  min-height: 40px;
+  min-height: 26px;
+  min-height: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  &:hover {
+    background: #242c3a;
+  }
+  &:disabled {
+    background-color: #d6d6d6;
+    color: #717171;
+    cursor: default;
+    &:hover {
+      background-color: #d6d6d6;
+      color: #717171;
+    }
+  }
+}
+.importWrap {
+  flex: 1 1 25% !important;
+  & > div {
+    display: flex;
+  }
+  div {
+    flex: 1;
+  }
+  .cellOr {
+    flex: 0 0 30px;
+    text-align: center;
+    //background: #ffff00;
+    //padding: 3px 3px 3px 0;
+    label,
+    span {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+    span {
+      line-height: 25px;
+      font-weight: bold;
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+@media screen and (max-width: 1400px) and (min-width: 520px) {
+  .importFileWrap button span {
+    display: none;
+  }
+}
+/*button {
+  background: #00bcd4;
+
+  !*&.btnImportFile {
+    margin-top: 5px;
+  }*!
+
+  &:hover {
+    background: darken(#00bcd4, 5%);
+  }
+}*/
+
+/**
+ * DATE BOX
+ */
+.dateBox {
+  position: relative;
+
+  i {
+    position: absolute;
+    pointer-events: none;
+
+    color: #3d4b60;
+    top: 36px;
+    right: 20px;
+    font-size: 18px;
+  }
+}
+
+// checkbox marker
+.marker {
+  label {
+    display: block;
+    margin: 0 0 0 5px;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  /* to hide the checkbox itself */
+  input[type="checkbox"] + label:before {
+    font-family: fontello;
+    display: inline-block;
+    width: 20px;
+  }
+
+  input[type="checkbox"] + label:before {
+    content: "\f096";
+  }
+  /* unchecked icon */
+  input[type="checkbox"] + label:before {
+    letter-spacing: 10px;
+  }
+  /* space between checkbox and label */
+
+  input[type="checkbox"]:checked + label:before {
+    content: "\f14a";
+  }
+  /* checked icon */
+  input[type="checkbox"]:checked + label:before {
+    letter-spacing: 10px;
+  }
+  /* allow space for check mark */
+}
+
+/**
+ * TAB
+ */
+
+.react-tabs__tab-list {
+  margin-bottom: 0;
+  .react-tabs__tab {
+    color: #666;
+    padding: 10px 15px;
+
+    &.react-tabs__tab--selected {
+      background: #fff;
+      border-radius: 0 !important;
+      box-shadow: 0 -2px 3px #dfdfdf;
+      color: #000;
+      bottom: -1px;
+    }
+  }
+}
+
+.react-tabs__tab-list,
+.react-tabs__tab.react-tabs__tab--selected {
+  border-color: #dadada;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+  padding: 10px;
+  padding: 10px 0 0;
+  border: 1px #dadada solid;
+  border: 0;
+  border-top: 0;
+}
+
+/**
+ * FILTER
+ */
+.filterWrapper {
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  background: blue;
+  width: 240px;
+  position: absolute;
+  z-index: 2;
+  color: #666;
+  left: 0;
+  font: normal 14px robotoregular;
+}
+
+/**
+ * FIXES
+ */
+.react-datepicker__input-container,
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 2;
+}
+
+.react-datepicker__header,
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #3d4b60 !important;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
+.react-datepicker-popper[data-placement^="bottom"]
+  .react-datepicker__triangle::before {
+  border-bottom-color: #3d4b60;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header {
+  color: #fff !important;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
+.react-datepicker-popper[data-placement^="bottom"]
+  .react-datepicker__triangle::before {
+  border-bottom-color: #3d4b60 !important;
+}
+
+.react-datepicker__header {
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    color: #fff;
+  }
+}
+
+// cell font-size
+.public_fixedDataTableCell_cellContent {
+  font-size: 14px;
+}
+
+.public_fixedDataTable_header .public_fixedDataTableCell_main {
+  font-weight: 500;
+}
+
+.fixedDataTableCellLayout_wrap1 {
+  display: block;
+  width: 100%;
+  height: 39px;
+  display: flex;
+  align-items: center;
+}
+
+.filterBox {
+  padding: 10px 10px 0;
+  text-align: center;
+  background: #efefef;
+  box-shadow: inset 0px 11px 8px -10px #a9a9a9;
+
+  input {
+    width: 100%;
+    height: 31px;
+    border-color: #cecece;
+  }
+}
+
+// AUTO SUGGESTION FIXES
+
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 51px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 1px 20px 0 10px;
+  font-size: 14px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+
+input[type="text"].react-autosuggest__input {
+  padding: 0 10px !important;
+  border-color: #ddd !important;
+  font-size: 14px;
+  color: #545454;
+}
+.react-autosuggest__container {
+  .react-autosuggest__suggestions-container--open {
+    top: 35px;
+    border-radius: 4px 4px 0 0;
+    border-color: #dfdfdf;
+    width: auto;
+  }
+}
+/*
+ */
+
+$width: 650px;
+$titleHeight: 46px;
+$titleWidth: $titleHeight;
+
+$error: #e48383;
+$info: #24cbe0;
+$ok: #79d279;
+$close: #ababab;
+
+.modalContent {
+  width: $width;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  border-radius: 4px;
+
+  .modalTitle {
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 22px;
+    height: $titleHeight;
+    line-height: $titleHeight;
+
+    i {
+      height: $titleHeight;
+      width: $titleWidth;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .info {
+      color: #91d641;
+    }
+
+    .close {
+      float: right;
+      color: $close;
+      cursor: pointer;
+
+      &:hover {
+        color: #ff5959;
+      }
+    }
+  }
+
+  .modelsubtitle {
+    padding: 5px 20px 0;
+  }
+
+  .modalBody {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 5px 20px 0;
+    line-height: 22px;
+    font-size: 14px;
+
+    label {
+      font-weight: bold;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .box1 {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 3;
+      grid-row-end: 4;
+    }
+
+    .customCheckbox {
+      margin-top: 30px;
+
+      label {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  button {
+    height: 30px;
+    min-height: 30px;
+    padding: 0 10px;
+    margin-left: 5px;
+  }
+
+  .modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 20px 15px;
+  }
+}
+
+$widthCPC: 400px;
+
+.modalContentCPC {
+  width: $widthCPC;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  border-radius: 4px;
+
+  .modalTitle {
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 22px;
+    height: $titleHeight;
+    line-height: $titleHeight;
+
+    i {
+      height: $titleHeight;
+      width: $titleWidth;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .info {
+      color: #91d641;
+    }
+
+    .close {
+      float: right;
+      color: $close;
+      cursor: pointer;
+
+      &:hover {
+        color: #ff5959;
+      }
+    }
+  }
+
+  .modelsubtitle {
+    padding: 5px 20px 0;
+
+    select {
+      width: 100%;
+    }
+  }
+
+  .modalBody {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px 20px 0;
+    line-height: 22px;
+    font-size: 14px;
+
+    label {
+      //font-weight: bold;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    select {
+      width: 100%;
+    }
+  }
+
+  button {
+    height: 30px;
+    min-height: 30px;
+    padding: 0 10px;
+    margin-left: 5px;
+  }
+
+  .modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 20px 15px;
+  }
+}
+
+// start :: Decluster Result related css
+.decluster-wrapper {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  background: #fff;
+  padding: 0 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.decluster-title {
+  width: 100%;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 22px;
+  height: 46px;
+  line-height: 46px;
+  display: flex;
+  justify-content: space-between;
+}
+i.demo-icon.icon-cancel.close {
+  cursor: pointer;
+  &:hover {
+    color: #ff5959;
+  }
+}
+// end :: Decluster Result related css

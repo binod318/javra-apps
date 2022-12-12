@@ -1,0 +1,138 @@
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-pencil:before {
+  content: "\e800";
+} /* '' */
+.icon-cancel:before {
+  content: "\e801";
+} /* '' */
+.icon-paper-plane:before {
+  content: "\e802";
+} /* '' */
+.icon-plus-circle:before {
+  content: "\e803";
+} /* '' */
+.icon-ok-circle:before {
+  content: "\e804";
+} /* '' */
+.icon-menu:before {
+  content: "\e805";
+} /* '' */
+.icon-download-1:before {
+  content: "\e806";
+} /* '' */
+.icon-left:before {
+  content: "\e807";
+} /* '' */
+.icon-exchange:before {
+  content: "\e808";
+} /* '' */
+.icon-attention:before {
+  content: "\e809";
+} /* '' */
+.icon-floppy:before {
+  content: "\e80a";
+} /* '' */
+.icon-trash:before {
+  content: "\e80b";
+} /* '' */
+.icon-leaf:before {
+  content: "\e80c";
+} /* '' */
+.icon-male:before {
+  content: "\e80d";
+} /* '' */
+.icon-female:before {
+  content: "\e80e";
+} /* '' */
+.icon-updown-circle:before {
+  content: "\e80f";
+} /* '' */
+.icon-shuffle:before {
+  content: "\e811";
+} /* '' */
+.icon-spin4:before {
+  content: "\e834";
+} /* '' */
+.icon-tree-2:before {
+  content: "\e83f";
+} /* '' */
+.icon-left-open:before {
+  content: "\f007";
+} /* '' */
+.icon-check-empty:before {
+  content: "\f096";
+} /* '' */
+.icon-filter:before {
+  content: "\f0b0";
+} /* '' */
+.icon-sort:before {
+  content: "\f0dc";
+} /* '' */
+.icon-angle-left:before {
+  content: "\f104";
+} /* '' */
+.icon-angle-right:before {
+  content: "\f105";
+} /* '' */
+.icon-angle-up:before {
+  content: "\f106";
+} /* '' */
+.icon-angle-down:before {
+  content: "\f107";
+} /* '' */
+.icon-circle-empty:before {
+  content: "\f10c";
+} /* '' */
+.icon-circle:before {
+  content: "\f111";
+} /* '' */
+.icon-ok-squared:before {
+  content: "\f14a";
+} /* '' */
+.icon-sort-alt-up:before {
+  content: "\f160";
+} /* '' */
+.icon-sort-alt-down:before {
+  content: "\f161";
+} /* '' */
+.icon-user-circle:before {
+  content: "\f2bd";
+} /* '' */
+.icon-undo:before {
+  content: "\e801";
+} /* '' */

@@ -1,0 +1,63 @@
+$width: 750px;
+$titleHeight: 60px;
+$titleWidth: $titleHeight;
+
+$error: #e48383;
+$info: #24cbe0;
+$ok: #79d279;
+$close: #ababab;
+
+
+
+  .modalBody {
+    display: block;
+
+    padding: 5px 20px 0;
+    line-height: 22px;
+    font-size: 14px;
+    table {
+      width: 100%;
+      margin: 15px 0 20px;
+
+      &.scroller {
+        tbody {
+          overflow-y: scroll;
+          max-height: 180px; /* 35 height + 1 border */
+          th, td {
+            &:first-child {
+            }
+          }
+        }
+      }
+      &.noScroller {
+        th, td {
+          &:first-child {
+          }
+        }
+      }
+    }
+    tbody {
+      display: block;
+
+
+      td {
+        border-color: #eaeaea;
+      }
+    }
+    tr {
+      width: 465px;
+    }
+    th, td {
+      min-width: 0;
+      &:first-child {
+        width: 51px;
+      }
+      width: 160px;
+      display: inline-block;
+      border-bottom: 1px solid #eaeaea;
+
+      padding: 5px 10px;
+      text-align: left;
+    }
+  }
+

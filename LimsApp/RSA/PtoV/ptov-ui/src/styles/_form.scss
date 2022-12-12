@@ -1,0 +1,101 @@
+
+.formWrap {
+  background: #fff;
+  width: 400px;
+  > div {
+    padding: 10px 15px;
+    &.formBody {
+      /*padding: 15px;*/
+    }
+
+    &:last-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.formTitle {
+  //background: #3c423a;
+  background: #71a436;
+  border-bottom: 1px solid #efefef;
+  //color: #e9c23c;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  position: relative;
+  /*font-weight: bold;*/
+  button {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    background: none;
+    line-height: 22px;
+    height: auto;
+    padding: 0 5px;
+    &:hover {
+      background: none;
+    }
+    i {
+      font-size: 10px;
+      //color: #e9c23c;
+      color: #b4de83;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.formBody {
+  .formErrorP {
+    color: red;
+    padding: 0 0 10px 0;
+    font-size: 14px;
+    border-bottom: 1px #eaeaea solid;
+    margin-bottom: 15px;
+  }
+  select, textarea {
+    width: 100%;
+  }
+  div {
+    label {
+      display: flex;
+      > div {
+        flex: 0 0 120px;
+        /*text-align: right;*/
+        /*padding: 0 10px;*/
+        font-size: 14px;
+        line-height: 22px;
+      }
+      > input[type='checkbox'] {
+        margin-top: 5px;
+      }
+      > input[type='password'],
+      > input[type='text'],
+      > div:last-child {
+        flex: 1 1;
+      }
+    }
+  }
+  > div + div {
+    margin-top: 10px;
+  }
+}
+
+.formAction {
+  /*border-top: 1px solid #efefef;*/
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    & + button {
+      margin-left: 1px;
+    }
+    &:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    &:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+  }
+}

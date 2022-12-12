@@ -1,0 +1,7 @@
+﻿[
+  {
+    "jobType": "Enza.UTM.Web.Services.Scheduling.Jobs.VerifyTraitDeterminationResultJob, Enza.UTM.Web.Services",
+    "cronExpr": "0 0/10 * 1/1 * ? *", //Every 10 Minutes. Reference: http://www.cronmaker.com/
+    "enabled":  true 
+  }
+]

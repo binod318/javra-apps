@@ -1,0 +1,222 @@
+.container {
+  min-width: 610px;
+  padding: 0 15px;
+  margin: 0 auto;
+  position: relative;
+
+  & > .trow:first-child {
+    padding-top: 10px;
+  }
+
+  .lab-prio {
+    background: #fffad1;
+
+    .ant-table-cell-fix-left,
+    .ant-table-cell-fix-right {
+      background: #fffad1;
+    }
+  }
+}
+
+/**
+ * GRID
+ */
+.trow {
+  display: flex;
+  margin-bottom: 5px;
+  &.no-margn {
+    margin: 0 0 5px;
+  }
+
+  .tcell {
+    flex: 1;
+    display: flex;
+    & > div:first-child {
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+
+  .importFileWrap {
+    button {
+      width: 100%;
+    }
+  }
+
+  .eWrap {
+    select {
+      width: 100%;
+    }
+  }
+}
+
+.grid-navigation {
+  margin-top: 10px;
+  padding: 5px 0;
+}
+
+.headerCell {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: normal;
+
+  span {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #565656;
+
+    &.filterBtn {
+      flex: 0 0 30px;
+      i {
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 5px;
+        &:hover {
+          color: darken(#202a3c, 10%);
+        }
+      }
+    }
+  }
+  &.hasExtraTraitMarker {
+    span {
+      color: green;
+    }
+  }
+}
+
+.container button.to-all {
+  width: 100px;
+}
+
+.par-row {
+  background: #ecffd7;
+  & .public_fixedDataTableCell_main {
+    background: #ecffd7;
+    border-top: 1px #e2efd4 solid;
+  }
+}
+.prio-row {
+  background: #fffad1;
+
+  & .public_fixedDataTableCell_main {
+    background: #fffad1;
+    border-top: 1px #e2efd4 solid;
+  }
+}
+.group-row {
+  background: #fff;
+  & .public_fixedDataTableCell_main {
+    background: #fff;
+    border-top: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
+    font-weight: 700;
+  }
+}
+.group-row {
+  & .fixedDataTableCellLayout_main:first-child {
+    position: relative;
+    width: 100% !important;
+    z-index: 1;
+    text-align: center;
+  }
+  & .public_fixedDataTableCell_cellContent {
+    padding-top: 14px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+}
+
+.tableCheck {
+  text-align: center;
+  label {
+    font-size: 16px;
+    margin: 0 0 5px 5px;
+    line-height: 26px;
+    color: #7db83d;
+  }
+
+  input[type="checkbox"]:disabled + label {
+    color: #c6c6c6;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+  /* to hide the checkbox itself */
+  input[type="checkbox"] + label:before {
+    font-family: fontello;
+    display: inline-block;
+    width: 20px;
+    font-size: 18px;
+  }
+
+  input[type="checkbox"] + label:before {
+    content: "\f096";
+  }
+  /* unchecked icon */
+  input[type="checkbox"] + label:before {
+    letter-spacing: 10px;
+  }
+  /* space between checkbox and label */
+
+  input[type="checkbox"]:checked + label:before {
+    content: "\f14a";
+  }
+  /* checked icon */
+  input[type="checkbox"]:checked + label:before {
+    letter-spacing: 10px;
+  }
+  /* allow space for check mark */
+}
+.footerCell {
+  height: 30px;
+  padding-top: 10px;
+}
+
+.fixedDataTableCellLayout_wrap1 {
+  height: 100%;
+}
+.public_fixedDataTableCell_cellContent {
+  white-space: nowrap;
+  .headerCell {
+    white-space: initial;
+  }
+}
+
+.lab-prep-action {
+  display:  flex;
+  column-gap: 15px;
+  justify-content: end;
+}
+
+.lab-prep-action-center {
+  display: flex;
+  column-gap: 15px;
+  justify-content: center;
+}
+
+.icon-fix-right {
+  float: right;
+}
+
+.detail-grid {
+  overflow-y: scroll;
+}
+
+.transparent-btn, .transparent-btn:hover {
+  background-color: transparent;
+}
+
+.sort-icon-detail {
+  color: #ccc;
+}
+
+.sort-icon-detail-active {
+  color: #8bc34a;
+}

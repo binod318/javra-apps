@@ -1,0 +1,97 @@
+{
+  "common": {
+    "lots": [
+      {
+        "vColumnName": null, //"blotn_lotnum", value for this column will be mapped later in the program as additionalcolumnvalues.
+        "pColumnName": "Lotnr",
+        "category": 4
+      },
+      {
+        "vColumnName": "vvarc_varname",
+        "pColumnName": "GER Name",
+        "category": 12
+      },
+      {
+        "vColumnName": "blotc_stock",
+        "pColumnName": "SeedStock",
+        "category": 4
+      },
+      {
+        "vColumnName": "blotd_createdat",
+        "pColumnName": "Creation Date",
+        "category": 4
+      }
+    ],
+    "varieties": [
+      {
+        "vColumnName": "vvarc_varname",
+        "pColumnName": "GER Name",
+        "category": 12
+      },
+      {
+        "vColumnName": "vvarc_enumber",
+        "pColumnName": "E-number",
+        "category": 4
+      }
+    ]
+  },
+  "crops": [
+    {
+      "cropCode": "ON",
+      "lots": [
+        {
+          "vColumnName": "Crop",
+          "pColumnName": "Crop",
+          "category": 4
+        },
+        {
+          "vColumnName": "BreedStat",
+          "pColumnName": "Breeding Station",
+          "category": 4
+        },
+        {
+          "vColumnName": "SyncCode",
+          "pColumnName": "SyncCode",
+          "category": 4
+        },
+        {
+          "vColumnName": "SeedStock",
+          "pColumnName": "Seed stock level",
+          "category": 4
+        }
+      ],
+      "varieties": [
+        {
+          "vColumnName": "Fertility",
+          "pColumnName": "Fertility.",
+          "category": 4
+        },
+        {
+          "vColumnName": "MasterNr",
+          "pColumnName": "Master number",
+          "category": 4
+        },
+        {
+          "vColumnName": "Country",
+          "pColumnName": "Country",
+          "category": 4
+        },
+        {
+          "vColumnName": "Area",
+          "pColumnName": "Area",
+          "category": 4
+        },
+        {
+          "vColumnName": "Type",
+          "pColumnName": "Type",
+          "category": 4
+        },
+        {
+          "vColumnName": "Season",
+          "pColumnName": "Season",
+          "category": 4
+        }
+      ]
+    }
+  ]
+}

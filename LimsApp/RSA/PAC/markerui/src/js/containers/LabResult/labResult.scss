@@ -1,0 +1,135 @@
+.textCol {
+  display: flex;
+
+  & > div {
+    min-width: 200px;
+    margin: 0 15px 0 0;
+    line-height: 24px;
+    border: 1px solid #d3d3d3;
+    flex: 1;
+    box-shadow: 0px 0px 10px #e4e4e4;
+    font-size: 14px;
+    h4 {
+      height: 30px;
+      padding: 0px 15px 0px;
+      border-bottom: 1px solid #d3d3d3;
+      color: #7b7b7b;
+      background: #efefef;
+      font-size: 14px;
+      line-height: 30px;
+    }
+
+    & > div {
+      height: 220px;
+      overflow-y: auto;
+
+      p {
+        line-height: 24px;
+      }
+
+      ul {
+        padding-bottom: 5px;
+      }
+
+      h4.line {
+        border-top: 1px solid #efefef;
+      }
+
+      & > div {
+        padding: 10px 15px 15px;
+      }
+
+      label {
+        font-weight: bold;
+        width: 145px;
+        display: inline-block;
+        margin-left: 0;
+      }
+    }
+  }
+
+  & > div:nth-last-child(1) {
+    margin-right: 0;
+  }
+}
+
+dl.table-display {
+  float: left;
+  width: 100%;
+  padding: 5px 15px 0px;
+}
+
+.table-display dt {
+  clear: left;
+  float: left;
+  width: 132px;
+  margin: 0;
+  font-weight: bold;
+  color: #565656;
+
+  &.whole {
+    width: 100%;
+    font-weight: normal;
+    position: relative;
+
+    textarea {
+      margin-top: 3px;
+      &.editing {
+        border-color: orange;
+      }
+    }
+    button {
+      padding: 1px 5px;
+      height: auto;
+      font-size: 12px;
+      position: absolute;
+      top: -25px;
+      right: 0;
+      &.reset {
+        right: 65px;
+        color: #666 !important;
+      }
+    }
+  }
+}
+
+.table-display dd {
+  float: left;
+  margin: 0;
+  padding-left: 10px;
+  ul {
+    list-style: none;
+    line-height: 30px;
+
+    li + li {
+      line-height: 20px;
+    }
+  }
+}
+
+.table-display dl {
+  float: left;
+  margin: 0;
+  padding-left: 10px;
+  ul {
+    list-style: none;
+    line-height: 30px;
+
+    li + li {
+      line-height: 20px;
+    }
+  }
+}
+
+.min-width {
+  min-width: 80px;
+}
+
+.savepatternremarks {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.savepatternremarks:disabled {
+  border: transparent;
+}

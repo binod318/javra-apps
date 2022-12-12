@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> - PtoV - </title>
+    @Styles.RenderFormat("<link rel=\"stylesheet\" type=\"text/css\" href=\"{0}?v=" + DateTime.UtcNow.Ticks + "\" />", "~/Content/style.css")
+</head>
+<body>
+    @RenderBody()    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

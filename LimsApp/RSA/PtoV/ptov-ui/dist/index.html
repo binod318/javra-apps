@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>.:: PTOV ::.</title>
+  <link rel="stylesheet" type="text/css" href="/style.css?v=$(Release.ReleaseId)" />
+  <script>
+	var userContext = {
+      "dateFormat": "DD/MM/YYYY"
+    };
+    var services = {
+      "API_BASE_URL": "$(BaseServiceUrl)",
+      "PHENOME_BASE_URL": "$(BasePhenomeServiceUrl)"
+    };
+
+    var adalConfig = {
+        enabled: $(SSO:Enabled),
+        tenant: "$(ida:tenant)",
+        clientId: "$(ida:client)",
+        endpoints: {
+          api: "$(ida:client)",
+        },
+        cacheLocation: "localStorage",
+        redirectUri: "$(ida:redirectUri)",
+      };
+    var pedigree = { "backwardGen": $(backwardGen), "forwardGen": $(forwardGen) };
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="/bundle.js?v=$(Release.ReleaseId)"></script>
+</body>
+
+</html>

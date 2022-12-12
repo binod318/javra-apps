@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>.:: PTOV ::.</title>
+  <script>
+    var userContext = {
+      "name": "KATHMANDU\\userDomainName",
+      "dateFormat": "DD/MM/YYYY"
+    };
+    var services = {
+      "API_BASE_URL": "https://10.0.1.207:6001/PtoVServices",
+      "PHENOME_BASE_URL": "https://test-enzazaden.phenome-networks.com",
+    };
+
+    var adalConfig = {
+            enabled: !false,
+            tenant: "e0b10270-240b-4eda-affb-50fb2b5920de",
+            clientId: "fcada66e-e5f1-4915-86d9-7c2db0a7603a",
+            endpoints: {
+              api: "fcada66e-e5f1-4915-86d9-7c2db0a7603a",
+            },
+            cacheLocation: "localStorage",
+            redirectUri: "https://localhost:9000",
+          };
+    var pedigree = { "backwardGen": 10, "forwardGen": 10 };
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div id="phenom"></div>
+  <script src="/bundle.js"></script>
+</body>
+
+</html>

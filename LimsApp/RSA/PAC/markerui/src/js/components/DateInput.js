@@ -1,0 +1,41 @@
+import React from "react";
+import PropTypes from "prop-types";
+import moment from "moment";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+moment().locale("en");
+
+const DateInput = (props) => (
+  <div className='dateBox'>
+    <label>{props.label}</label> {/* eslint-disable-line */}
+    <DatePicker
+      id={props.id}
+      name={props.name}
+      disabled={props.disabled}
+      selected={props.selected}
+      minDate={props.todayDate}
+      onChange={props.change}
+      dateFormat={window.userContext.dateFormat}
+      showWeekNumbers
+      locale='en-gb'
+    />
+    <i className='icon icon-calendar-inv' />
+  </div>
+);
+// showWeekNumbers
+DateInput.defaultProps = {
+  id: "",
+  selected: "",
+  disabled: null,
+  name: "",
+};
+DateInput.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  change: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  todayDate: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
+export default DateInput;

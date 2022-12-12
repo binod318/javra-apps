@@ -1,0 +1,57 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.agrosolutions.nl/ABSConnect/2017/01/01">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ns:Quality_Connect>
+      <ns:ListQualityConnect>
+        $Model.DeterminationAssignments:{da|
+        <ns:Quality_Connect_obj>
+          <ns:Determination_assignment>$da.DetAssignmentID$</ns:Determination_assignment>
+          <ns:List_Quality_connect_replicates>
+            <ns:Quality_Connect_Replicate>
+              <ns:Number_of_seeds_per_replicate>$da.NrOfWells$</ns:Number_of_seeds_per_replicate>
+              <ns:Replicate_number>1</ns:Replicate_number>
+            </ns:Quality_Connect_Replicate>
+          </ns:List_Quality_connect_replicates>
+          <ns:List_Quality_connect_step>
+            <ns:Quality_connect_step>
+              <ns:Final_step_indicator>0</ns:Final_step_indicator>
+              <ns:List_Quality_connect_Results>
+                <ns:Quality_Connect_result>
+                  <ns:Count_result>$da.NrOfInbreds$</ns:Count_result>
+                  <ns:Judgement_number>1</ns:Judgement_number>
+                  <ns:Quality_test_code>IN</ns:Quality_test_code>
+                  <ns:Replicate_number>1</ns:Replicate_number>
+                </ns:Quality_Connect_result>
+                <ns:Quality_Connect_result>
+                  <ns:Count_result>$da.NrOfDeviating$</ns:Count_result>
+                  <ns:Judgement_number>1</ns:Judgement_number>
+                  <ns:Quality_test_code>OFFTYPES</ns:Quality_test_code>
+                  <ns:Replicate_number>1</ns:Replicate_number>
+                </ns:Quality_Connect_result>
+              </ns:List_Quality_connect_Results>
+              <ns:Process_step_code>RESULTS PAC</ns:Process_step_code>
+              <ns:Step_executed_by>$Model.Username$</ns:Step_executed_by>
+            </ns:Quality_connect_step>
+            <ns:Quality_connect_step>
+              <ns:Final_step_indicator>1</ns:Final_step_indicator>
+              <ns:List_Quality_connect_Results>
+                $da.Results:{rs|
+                <ns:Quality_Connect_result>
+                  <ns:Percentage>$rs.Percentage$</ns:Percentage>
+                  <ns:Result_code>$rs.ResultCode$</ns:Result_code>
+                  <ns:Replicate_number>1</ns:Replicate_number>
+                </ns:Quality_Connect_result>
+                }$
+              </ns:List_Quality_connect_Results>
+              <ns:Process_step_code>EXAM PAC</ns:Process_step_code>
+              <ns:Step_executed_by>$Model.Username$</ns:Step_executed_by>
+            </ns:Quality_connect_step>
+          </ns:List_Quality_connect_step>
+          <ns:Remarks>$da.Remarks$</ns:Remarks>
+        </ns:Quality_Connect_obj>
+        }$
+      </ns:ListQualityConnect>
+      <ns:Username>$Model.Username$</ns:Username>
+    </ns:Quality_Connect>
+  </soapenv:Body>
+</soapenv:Envelope>

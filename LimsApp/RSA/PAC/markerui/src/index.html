@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      charset="utf-8"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ENZA :: PAC</title>
+    <script>
+      var userContext = {
+        dateFormat: "DD/MM/YYYY",
+      };
+
+      var services = {
+        ServiceUrl: "https://10.0.1.207:9999/PACServices",
+        AIConnectionString: "InstrumentationKey=a8c54260-6002-4b43-903e-46d32399d960;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/"
+      };
+
+      var adalConfig = {
+        tenant: "e0b10270-240b-4eda-affb-50fb2b5920de",
+        clientId: "3c4a34d9-bde0-4475-b597-9e90aa94ce96",
+        endpoints: {
+          api: "3c4a34d9-bde0-4475-b597-9e90aa94ce96",
+        },
+        cacheLocation: "localStorage",
+        redirectUri: "http://localhost:9999",
+      };
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      type="text/javascript"
+      src="/bundle.js?v=$(Release.ReleaseId)"
+    ></script>
+  </body>
+</html>
