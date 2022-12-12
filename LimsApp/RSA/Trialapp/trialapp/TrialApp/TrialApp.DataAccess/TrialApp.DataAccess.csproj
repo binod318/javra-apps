@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Enza.DataAccess\Enza.DataAccess.csproj" />
+    <ProjectReference Include="..\TrialApp.Common\TrialApp.Common.csproj" />
+    <ProjectReference Include="..\TrialApp.Entities\TrialApp.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

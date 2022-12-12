@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrialApp.Views.VarietyPage"
+             xmlns:controls="clr-namespace:TrialApp.Controls;assembly=TrialApp"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures">
+
+    <NavigationPage.TitleView>
+        <Label Text="Varieties" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="50,0,0,0" iOS="80,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>50,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>40,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon = "Assets/trialpropertiesNew.png" Order="Primary" Text="Trial props." Command="{Binding TrialPropCommand}" CommandParameter="{Binding TrialPropertiesParams}" />
+        <ToolbarItem Icon = "Assets/add.png" Order="Primary" Text = "Add variety" Clicked="AddVariety_Clicked"/>
+        <ToolbarItem Icon = "Assets/gallery.png"  Order="Primary" Text = "Gallery" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <!--All contents should be inside AbsoluteLayout-->
+        <AbsoluteLayout>
+
+            <!--Main ContentView: One ContentView active at a time-->
+            <ContentView x:Name="MainView" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout Padding="5">
+                    <Grid Margin="0,0,5,5" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Start" Margin="5" FontSize="20" LineBreakMode="MiddleTruncation"/>
+                        <Frame BackgroundColor="Gray" Grid.Row="1" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    <Grid Margin="0,0,5,5" ColumnSpacing="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="No."  FontSize="16" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"></Label>
+                        <Label Text="Variety" FontSize="16" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Column="1"></Label>
+                        <Picker
+                            x:Name="TraitFirst"
+                            Grid.Column="2"
+                            ItemsSource="{Binding Traitlist}"
+                            Title ="Select trait"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="Transparent"
+                            ItemDisplayBinding="{Binding ColumnLabel}"
+                            TextColor="#646464"
+                            SelectedItem="{Binding TraitSelectedFirst,Mode=TwoWay}"
+                            SelectedIndexChanged="TraitFirst_OnSelectedIndexChanged"
+                            VerticalOptions="FillAndExpand" 
+                            FontSize="16"
+                            />
+
+                        <Picker
+                            x:Name="TraitSecond" 
+                            Grid.Column="3"   
+                            ItemsSource="{Binding Traitlist}"
+                            Title ="Select trait"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="Transparent" 
+                            TextColor="#646464"
+                            ItemDisplayBinding="{Binding ColumnLabel}"
+                            SelectedItem="{Binding TraitSelectedSecond,Mode=TwoWay}"
+                            SelectedIndexChanged="TraitSecond_OnSelectedIndexChanged"
+                            VerticalOptions="FillAndExpand"   
+                            FontSize="16"       
+                            />
+                        <Frame OutlineColor="Gray" Grid.Row="1" Grid.ColumnSpan="4"/>
+                    </Grid>
+                    
+                    <controls:CustomListView x:Name="VarietyListView" Margin="0,0,5,5" HorizontalOptions="FillAndExpand" RowHeight="60" ItemsSource="{Binding VarietyList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <mr:Grid x:Name="RowGrid" Tapped="RowGrid_Tapped" LongPressing="RowGrid_LongPressing">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding FieldNumber,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding VarietyName,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Column="1"/>
+                                        <Label Text="{Binding ObsvalueTrait1,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Column="2"/>
+                                        <Label Text="{Binding ObsvalueTrait2,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Column="3"/>
+                                        <Label Text="{Binding VarietyId,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" IsVisible="False"/>
+                                        <Label Text="{Binding Crop,Mode=TwoWay}" FontSize="15" LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" IsVisible="False"/>
+                                    </mr:Grid>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </controls:CustomListView>
+                </StackLayout>
+            </ContentView>
+
+            <!--Busy indicator popup-->
+            <ContentView x:Name="CtBusyIndicator" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Orientation="Vertical">
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+                </StackLayout>
+            </ContentView>
+
+            <!--preview popup-->
+            <ContentView x:Name="showImagePopup" BackgroundColor="White" Padding="20,20,20,40" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5" IsVisible="False" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout x:Name="ShowImages" HorizontalOptions="Center" VerticalOptions="Center" Orientation="Vertical">
+                </StackLayout>
+            </ContentView>
+
+
+            <!--Add Variety popup-->
+            <ContentView  x:Name="AddVarietyPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding AddVarietyPopupVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" MinimumHeightRequest="300" MinimumWidthRequest="500" BackgroundColor="White" Padding="10">
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Add variety" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                        <mr:Label x:Name="LblClosePopup" Text="  X  " Tapped="LblClosePopup_Tapped" FontSize="Large" FontAttributes="None" Padding="-5,0"/>
+                    </StackLayout>
+                    <controls:CustomEntry x:Name="EntryNumber" WidthRequest="500" HeightRequest="50" Placeholder="Number" Text="{Binding ConsecutiveNumber,Mode=TwoWay}" VerticalOptions="Fill" Margin="0,5,0,0" ReturnType="Next" Completed="EntryNumber_Completed"/>
+                    <controls:CustomEntry x:Name="EntryVarietyName" WidthRequest="500" HeightRequest="50" Placeholder="Variety name" Text="{Binding VarietyName,Mode=TwoWay}" VerticalOptions="Fill" ReturnType="Done" />
+
+                    <Label IsVisible="{Binding DisplayMessage, Mode=TwoWay}" Text="{Binding ConfirmationMessage}" TextColor="{Binding ConfirmationColor}" FontSize="18" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,5"/>
+                    <Button x:Name="btnAddVarietyToTrial" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Text="ADD TO TRIAL"
+                            TextColor="White" BorderColor="{Binding ButtonColor}" BackgroundColor="{Binding ButtonColor}" HeightRequest="60" Margin="0,5,0,0"
+                            IsEnabled="{Binding ButtonEnabled,Mode=TwoWay}" Clicked="BtnAddVarietyToTrial_Clicked"/>
+
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

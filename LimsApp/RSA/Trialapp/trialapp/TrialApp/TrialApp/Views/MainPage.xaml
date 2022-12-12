@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrialApp.Views.MainPage"
+             xmlns:controls="clr-namespace:TrialApp.Controls"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures">
+
+    <NavigationPage.TitleView>
+        <Label Text="Trials" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Default="0,0,0,0">
+                    <!--<OnPlatform.Android>105,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>90,0,0,0</OnPlatform.iOS>
+                    <OnPlatform.Default>0,0,200,0</OnPlatform.Default>-->
+
+                    <On Platform="iOS">90,0,0,0</On>
+                    <On Platform="Android">105,0,0,0</On>
+                    <On Platform="UWP">175,0,0,0</On>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding LoginDownloadText}" Order="Primary" Icon = "{Binding LoginDownloadIcon}" Command="{Binding GoToLoginCommand}" Priority="2" CommandParameter="{Binding}" ></ToolbarItem>
+        <ToolbarItem Text="Filter" Order="Primary" Icon = "{Binding FilterIcon}" Command="{Binding GoToFilterScreen}" Priority="3" CommandParameter="{Binding}" ></ToolbarItem>
+        <ToolbarItem Text="Settings" Order="Primary" Icon = "Assets/setting.png" Command="{Binding GoToSettingScreen}" Priority="4" CommandParameter="{Binding}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <AbsoluteLayout>
+            <ContentView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <Grid x:Name="MainGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="5,5,5,0">
+                        <!--<Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--<controls:CustomEntry x:Name="EntrySearch" Placeholder="search trial" IsVisible="{Binding SearchVisible}" TextChanged="Entry_OnTextChanged" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"
+                                 HeightRequest="40" BackgroundColor="Transparent" Text="{Binding SearchText,Mode=TwoWay}" IsEnabled="True" Margin="5,0,0,0"/>
+
+                        <Image Grid.Row="0" Grid.Column="1" x:Name="ImageSearch" Source="Assets/search.png" WidthRequest="30" HeightRequest="30" Margin="10,0" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="End" IsEnabled="{Binding EnableControls}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SearchImage_Click"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <ActivityIndicator Grid.ColumnSpan="2" Grid.Row="1"  HorizontalOptions ="Center" IsVisible="{Binding IsBusy}" IsRunning ="{Binding IsBusy}" Color="#3dc52d" />
+
+                        <Button Grid.ColumnSpan="2" Grid.Row="2" BorderColor="#3dc52d" BorderWidth="1" TextColor="#3dc52d" BackgroundColor="Transparent" HeightRequest="60" Font="Medium" Margin="5" 
+                              -->
+
+                        <controls:CustomSearchBar x:Name="placeHolder" Placeholder="Search trials..."
+                                CancelButtonColor="Orange"
+                                PlaceholderColor="Orange"
+                                TextColor="Orange"
+                                HorizontalTextAlignment="Center"
+                                FontSize="Medium"
+                                FontAttributes="Italic" TextChanged="Entry_OnTextChanged" IsSpellCheckEnabled="False">
+                            <controls:CustomSearchBar.Margin>
+                                <!--<OnPlatform x:DataType="Thickness" Android="-10,0,0,0"/>-->
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <OnPlatform.Android>-10,0,0,0</OnPlatform.Android>
+                                </OnPlatform>
+                            </controls:CustomSearchBar.Margin>
+                            <controls:CustomSearchBar.Keyboard>
+                                <Keyboard x:FactoryMethod="Create">
+                                    <x:Arguments>
+                                        <KeyboardFlags>None</KeyboardFlags>
+                                    </x:Arguments>
+                                </Keyboard>
+                            </controls:CustomSearchBar.Keyboard>
+                        </controls:CustomSearchBar>
+
+                        <ActivityIndicator Grid.Row="1"  HorizontalOptions ="Center" IsVisible="{Binding IsBusy}" IsRunning ="{Binding IsBusy}" Color="#3dc52d" />
+
+                        <Button Grid.Row="2" BorderColor="#3dc52d" BorderWidth="1" TextColor="#3dc52d" BackgroundColor="Transparent" HeightRequest="60" Font="Medium" Margin="5" 
+                                IsVisible="{Binding SubmitVisible}" Text="{Binding SubmitText}" Command="{Binding SubmitCommand}" IsEnabled="{Binding EnableControls}"/>
+
+                    </Grid>
+                    <ScrollView x:Name="GridViewScroll" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5" Grid.Row="1" IsEnabled="{Binding EnableControls}" Padding="5" IsVisible="{Binding GridviewVisible}">
+                        <controls:AwesomeWrappanel x:Name="GridViewPanel" Spacing="10" Orientation="Horizontal" ItemsSource="{Binding ListSource, Mode=TwoWay}" >
+                            <controls:AwesomeWrappanel.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                                        <mr:StackLayout Padding="6"  IsVisible="{Binding IsTrial}" HeightRequest="148" WidthRequest="148" ClassId="{Binding StyleID}"  BackgroundColor="{Binding TrialColor}" LongPressing="Tile_LongPressing" Tapping="Tile_Tapping" LongPressedCommandParameter="{Binding}">
+                                            <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" VerticalOptions="Start">
+                                                <Label Text="{Binding StatusName}" TextColor="White" HorizontalOptions="Start" FontSize="{Binding FontSizeStatus}"></Label>
+                                                <Image HeightRequest="18" WidthRequest="18" HorizontalOptions="EndAndExpand" IsVisible="{Binding Selected,Mode=TwoWay}" Source="Assets/select.png"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding TrialName}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" Margin="0" HeightRequest="70" VerticalTextAlignment="Center" FontSize="{Binding FontsizeTrialName}"></Label>
+                                            <Label Text="{Binding TrialTypeName}" TextColor="White" FontSize="{Binding FontsizeTrialName}" FontAttributes="Bold"></Label>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                                <Label Text="{Binding CropCode}" HorizontalOptions="Start" TextColor="White" FontSize="{Binding FontSizeCountry}"></Label>
+                                                <Label Text=" - " TextColor="White" FontSize="{Binding FontSizeCountry}"/>
+                                                <Label Text="{Binding CountryCode}" TextColor="White" FontSize="{Binding FontSizeCountry}"></Label>
+                                            </StackLayout>
+                                        </mr:StackLayout>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </controls:AwesomeWrappanel.ItemTemplate>
+                        </controls:AwesomeWrappanel>
+                    </ScrollView>
+
+                    <ScrollView x:Name="ListViewScroll" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5" Grid.Row="1" IsEnabled="{Binding EnableControls}" Padding="5" IsVisible="{Binding ListviewVisible}">
+                        <controls:AwesomeWrappanel x:Name="ListViewPanel" Spacing="10" Orientation="Horizontal">
+                            <controls:AwesomeWrappanel.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                                        <mr:StackLayout Padding="6" ClassId="{Binding StyleID}" BackgroundColor="{Binding TrialColor}" LongPressing="Tile_LongPressing" Tapping="Tile_Tapping" LongPressedCommandParameter="{Binding}">
+
+                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding TrialName}" FontSize="{Binding FontsizeTrialNameList}" TextColor="White" VerticalOptions="Start" HorizontalOptions="FillAndExpand" FontAttributes="Bold" Margin="0,0,0,3" LineBreakMode="TailTruncation" ></Label>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding StatusName}" FontSize="{Binding FontsizeStatusList}" TextColor="White" VerticalOptions="Start" HorizontalOptions="End" ></Label>
+                                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding CropCountry}" FontSize="{Binding FontsizeTrialTypeList}" TextColor="White" HorizontalOptions="FillAndExpand" Margin="0,0,0,3" ></Label>
+                                                <Label Grid.Row="2" Grid.Column="0" Text="{Binding DisplayPropertyValue}" FontSize="{Binding FontsizeStatusList}" TextColor="White" HorizontalOptions="FillAndExpand" IsVisible="{Binding PropertyVisible, Mode=TwoWay}" HeightRequest="{Binding DisplayPropertyHeight}" ></Label>
+
+                                                <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HeightRequest="18" WidthRequest="18" Source="Assets/select.png" HorizontalOptions="End" VerticalOptions="End" IsVisible="{Binding Selected,Mode=TwoWay}"/>
+
+                                            </Grid>
+                                        </mr:StackLayout>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </controls:AwesomeWrappanel.ItemTemplate>
+                        </controls:AwesomeWrappanel>
+                    </ScrollView>
+                    <Label Grid.Row="2" Margin="3" Text="{Binding LatestSynctime}" TextColor="#888" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                </Grid>
+            </ContentView>
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

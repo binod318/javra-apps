@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Propertycontrol="clr-namespace:TrialApp.UserControls"
+             x:Class="TrialApp.Views.TrialPropertiesPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="Trial properties" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="-15,0,0,0" iOS="20,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>-15,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>20,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon = "Assets/gps.png" Clicked="GPS_Click" Order="Primary" Text="GPS"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ContentView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Padding="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Frame x:Name="HeaderFrame"  BackgroundColor="{Binding HeaderColor, Mode=TwoWay}" Padding="10,0"  Margin="-13,-10" HeightRequest="120">
+
+                        <StackLayout Orientation="Vertical" Spacing="8" VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding CurrentTrial}" TextColor="{Binding HeaderTextColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" FontSize="20" />
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <Label Text="Status" FontSize="16" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{Binding HeaderTextColor}"/>
+
+                                <Picker x:Name="TrialPropStatusPicker" 
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="FillAndExpand"
+                                        TextColor="{Binding HeaderTextColor}"
+                                        ItemDisplayBinding="{Binding TraitValueName}"
+                                        VerticalOptions="Start"                                                          
+                                        ItemsSource="{Binding StatusSetList, Mode=TwoWay}"
+                                        SelectedItem="{Binding SelectedStatus, Mode=TwoWay}"
+                                        SelectedIndexChanged="Picker_SelectedIndexChanged" 
+                                        FontSize="16"/>
+                                
+                            </StackLayout>
+                            <Label IsVisible="False" x:Name="lblErrorStatus" TextColor="#a80303" FontSize="Default"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Picker
+                        x:Name="PropertysetPicker"
+                        ItemsSource="{Binding PropertySetList, Mode=TwoWay}"
+                        BackgroundColor="#ebebeb"
+                        Margin="0,20,0,10"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedIndexChanged="PropertysetPicker_OnSelectedIndexChanged"
+                        SelectedIndex="{Binding PickerSelectedIndex, Mode=TwoWay}"/>
+
+                    <Propertycontrol:EntryUserControl
+                        x:Name="TrialPropertiesUserControl"
+                        BindingContext="{Binding TraitList, Mode=TwoWay}"
+                        VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+            </ContentView>
+
+            <!--Popup Area-->
+            <ContentView x:Name="TraitInfoPopup" BackgroundColor="#BF000000" Padding="10, 0" IsVisible="False" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" MinimumHeightRequest="200" MinimumWidthRequest="300" BackgroundColor="White" Padding="10">
+
+                        <Label FontSize="Large" FontAttributes="Bold" Text="Property info" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+                        <Grid x:Name="PopupGrid" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,10" Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.1*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="3.9*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <Button Text="Ok" Clicked="Button_Clicked" VerticalOptions="End" HorizontalOptions="Center" WidthRequest="80"/>
+
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.trialapp.test" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="25" android:targetSdkVersion="30" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<application android:label="TrialAppTest" android:name="android.support.multidex.MultiDexApplication" android:icon="@drawable/icon" android:extractNativeLibs="true">
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAUtqb_H5pPaD6DGanFRuvFaVZr00OROjo" />
+		<meta-data android:name="Subject" android:value="Trialapp Database backup" />
+		<meta-data android:name="EmailText" android:value="Trialapp Android Database backup file is attached here." />
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+		</provider>
+		<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<!--<data android:scheme="msauth" android:host="com.javra.trialApp/iaj9TJs6y85Ga01NnbaWA5kk+V4=" />-->
+				<!--<data android:scheme="msale5274716-fa80-4b01-9568-0b6fc6a9daab" android:host="auth" />
+        <data android:scheme="msauth" android:host="com.trialapp.test" android:path="/VOZmx761wZLrMfIr%2FWNynVMl7Hc%3D"/>-->
+			</intent-filter>
+		</activity>
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="${applicationId}" />
+			</intent-filter>
+		</receiver>
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-feature android:name="android.hardware.location" android:required="false" />
+	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
+	<uses-feature android:name="android.hardware.location.network" android:required="false" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<queries>
+    	<package android:name="com.azure.authenticator" />
+    	<package android:name="com.microsoft.windowsintune.companyportal" />
+  	</queries>
+</manifest>

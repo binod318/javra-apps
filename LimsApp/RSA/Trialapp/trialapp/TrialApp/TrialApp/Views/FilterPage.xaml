@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Converter"
+             x:Class="TrialApp.Views.FilterPage"
+             xmlns:xfMultiPicker="clr-namespace:XFMultiPicker"
+             xmlns:model="clr-namespace:Model">
+
+    <NavigationPage.TitleView>
+        <Label Text="Filter" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="-75,0,0,0" iOS="-30,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>-75,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>-30,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin> 
+        </Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:JoinListConverter x:Key="JoinListConverter" />
+            <converter:JoinListConverterByID x:Key="JoinListConverterByID" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="10,5">
+            <Switch x:Name="FilterSwitch" HorizontalOptions="StartAndExpand" Toggled="FilterSwitch_OnToggled" IsToggled="{Binding ToggleFilter}"></Switch>
+
+            <ScrollView Orientation="Vertical" IsVisible="{Binding DisableFilter}">
+                <ScrollView.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="22" Text="Trial type: " VerticalOptions="CenterAndExpand" WidthRequest="145"></Label>
+                            <Entry x:Name="trialtypeEntry" StyleId="TrialType"  Text="{Binding TrialTypeSelected, Converter={StaticResource JoinListConverterByID}}" IsVisible="False"/>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40" Grid.Column="1">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="FilterTrialTypePicker" Grid.Column="1" StyleId="TrialType"
+                                                ClassId="TrialType"
+                                                ItemsSource="{Binding TrialTypeList}"
+                                                SelectedItems="{Binding TrialTypeSelected}"
+                                                Text="{Binding TrialTypeSelected, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+
+                        </Grid>
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="22" Text="Crop: " VerticalOptions="CenterAndExpand" WidthRequest="145"></Label>
+                            <Entry x:Name="cropEntry" StyleId="Crop" Text="{Binding CropSelected, Converter={StaticResource JoinListConverterByID}}" IsVisible="False"/>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="FilterCropPicker"  Grid.Column="1"  StyleId="Crop"
+                                                ClassId="Crop"
+                                                ItemsSource="{Binding CropList, Mode=TwoWay}"
+                                                SelectedItems="{Binding CropSelected , Mode=TwoWay}"
+                                                Text="{Binding CropSelected, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+
+                            </Frame>
+
+                        </Grid>
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="22" Text="Crop segment: " VerticalOptions="CenterAndExpand" WidthRequest="145"></Label>
+                            <Entry x:Name="cropsegmentEntry" StyleId="CropSegment" Text="{Binding CropSegmentSelected, Converter={StaticResource JoinListConverterByID}}" IsVisible="False"/>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="FilterCropSegmentPicker"  Grid.Column="1"
+                                                ClassId="CropSegment"
+                                                ItemsSource="{Binding CropSegmentList}"
+                                                SelectedItems="{Binding CropSegmentSelected}"
+                                                Text="{Binding CropSegmentSelected, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="22" Text="Trial region: " VerticalOptions="CenterAndExpand" WidthRequest="145"></Label>
+                            <Entry x:Name="trialregionEntry" StyleId="TrialRegion" Text="{Binding TrialRegionSelected, Converter={StaticResource JoinListConverterByID}}" IsVisible="False"/>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40" Grid.Column="1">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="FilterTrialRegionpPicker"  Grid.Column="1"
+                                                ClassId="TrialRegion"
+                                                ItemsSource="{Binding TrialRegionList}"
+                                                SelectedItems="{Binding TrialRegionSelected}"
+                                                Text="{Binding TrialRegionSelected, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="22" Text="Country: " VerticalOptions="CenterAndExpand" WidthRequest="145"></Label>
+                            <Entry x:Name="countryEntry" StyleId="Country"  Text="{Binding CountrySelected, Converter={StaticResource JoinListConverterByID}}" IsVisible="False" />
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="FilterCountryPicker"  Grid.Column="1"
+                                                ClassId="Country"
+                                                ItemsSource="{Binding CountryList}"
+                                                SelectedItems="{Binding CountrySelected}"
+                                                Text="{Binding CountrySelected, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+
+                        <!--Properties section-->
+
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Picker
+                                x:Name="Property1Picker"
+                                ItemsSource="{Binding Propertylist}"
+                                HorizontalOptions="FillAndExpand"
+                                Title ="Select property"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                ItemDisplayBinding="{Binding ColumnLabel}"
+                                SelectedItem="{Binding SelectedProperty1,Mode=TwoWay}"
+                                SelectedIndexChanged="PropertyPicker_OnSelectedIndexChanged"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="145"
+                                ClassId="1"
+                                />
+
+                            <Frame OutlineColor="Black" Padding="1" HeightRequest ="40" Grid.Column="1" IsVisible="{Binding Property1EntryVisible}">
+                                <Entry x:Name="Property1" StyleId="Property1" Text="{Binding StringPropertyAttribute1}" HorizontalTextAlignment="Center" Keyboard="{Binding KeyboardProperty1}"/>
+                            </Frame>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1" IsVisible="{Binding Property1MultipickerVisible}">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="Property1MultiPicker"
+                                                ClassId="Property1"
+                                                ItemsSource="{Binding PropAttributeList1}"
+                                                SelectedItems="{Binding SelectedPropertyAttribute1}"
+                                                Text="{Binding SelectedPropertyAttribute1, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Picker
+                                x:Name="Property2Picker"
+                                ItemsSource="{Binding Propertylist}"
+                                Title ="Select property"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                ItemDisplayBinding="{Binding ColumnLabel}"
+                                SelectedItem="{Binding SelectedProperty2,Mode=TwoWay}"
+                                SelectedIndexChanged="PropertyPicker_OnSelectedIndexChanged"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="145"
+                                ClassId="2"
+                                />
+
+                            <Frame OutlineColor="Black" Padding="1" HeightRequest ="40" Grid.Column="1" IsVisible="{Binding Property2EntryVisible}">
+                                <Entry x:Name="Property2" StyleId="Property2" Text="{Binding StringPropertyAttribute2}" HorizontalTextAlignment="Center" Keyboard="{Binding KeyboardProperty2}"/>
+                            </Frame>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1" IsVisible="{Binding Property2MultipickerVisible}">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="Property2MultiPicker"
+                                                ClassId="Property2"
+                                                ItemsSource="{Binding PropAttributeList2}"
+                                                SelectedItems="{Binding SelectedPropertyAttribute2}"
+                                                Text="{Binding SelectedPropertyAttribute2, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+
+                        <Grid BackgroundColor="#d3d3d3" Padding ="10" Grid.Row="7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Picker
+                                x:Name="Property3Picker"
+                                ItemsSource="{Binding Propertylist}"
+                                HorizontalOptions="FillAndExpand"
+                                Title ="Select property"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                ItemDisplayBinding="{Binding ColumnLabel}"
+                                SelectedItem="{Binding SelectedProperty3,Mode=TwoWay}"
+                                SelectedIndexChanged="PropertyPicker_OnSelectedIndexChanged"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="145"
+                                ClassId="3"
+                                />
+
+                            <Frame OutlineColor="Black" Padding="1" HeightRequest ="40" Grid.Column="1" IsVisible="{Binding Property3EntryVisible}">
+                                <Entry x:Name="Property3" StyleId="Property3" Text="{Binding StringPropertyAttribute3}" HorizontalTextAlignment="Center" Keyboard="{Binding KeyboardProperty3}"/>
+                            </Frame>
+                            <Frame OutlineColor="Black" Padding="1"  HeightRequest ="40"  Grid.Column="1" IsVisible="{Binding Property3MultipickerVisible}">
+                                <xfMultiPicker:MultiPickerView x:TypeArguments="model:MyType" x:Name="Property3MultiPicker"
+                                                ClassId="Property3"
+                                                ItemsSource="{Binding PropAttributeList3}"
+                                                SelectedItems="{Binding SelectedPropertyAttribute3}"
+                                                Text="{Binding SelectedPropertyAttribute3, Converter={StaticResource JoinListConverter}}" HorizontalOptions="Fill" Clicked="FilterTrialTypePicker_Clicked"/>
+                            </Frame>
+                        </Grid>
+
+                    </Grid>
+                </ScrollView.Content>
+            </ScrollView>
+
+            <StackLayout Spacing="20" Orientation="Horizontal" Margin="0,20" VerticalOptions="EndAndExpand">
+                <Button Text="Apply" HorizontalOptions="FillAndExpand" BorderWidth="1" HeightRequest="50" Command="{Binding ApplyFilterCommand}" CommandParameter="{Binding}"/>
+                <Button Text="Cancel" HorizontalOptions="FillAndExpand" BorderWidth="1" HeightRequest="50" Command="{Binding CancelFilterCommand}" CommandParameter="{Binding}"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

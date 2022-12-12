@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
+             xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:sfButton="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TrialApp.Controls"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             x:Class="TrialApp.Views.VarietyPageTabletUWP"
+             x:Name="VarietyPageT"
+             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core">
+
+    <!--Customized header-->
+    <NavigationPage.TitleView>
+        <!--<StackLayout x:Name="NavHeader" Spacing="10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Purple">
+            <Label Text="{Binding TrialName}" HorizontalOptions="Start" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                   TextColor="White" FontSize="Medium" HeightRequest="50" LineBreakMode="MiddleTruncation" BackgroundColor="DarkBlue"/>
+            <controls:CustomSearchBar x:Name="VarietySearchBar" HeightRequest="50" WidthRequest="220" Placeholder="Search variety..." 
+                                      PlaceholderColor="Orange" TextColor="Orange" CancelButtonColor="Orange" FontAttributes="Italic"
+                                      BackgroundColor="SkyBlue" ClassId="VarietySearchBar" Unfocused="VarietySearchBar_Unfocused" SearchButtonPressed="VarietySearchBar_SearchButtonPressed" />
+        </StackLayout>-->
+        <Grid ColumnSpacing="10" HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="{Binding TrialName}" HorizontalOptions="Start" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                   TextColor="White" FontSize="Medium" HeightRequest="50" LineBreakMode="MiddleTruncation"/>
+            <controls:CustomSearchBar Grid.Column="1" x:Name="VarietySearchBar" HeightRequest="40" WidthRequest="200" Placeholder="Search variety..." 
+                                      PlaceholderColor="Orange" TextColor="Orange" CancelButtonColor="Orange" FontAttributes="Italic"
+                                      BackgroundColor="Transparent" ClassId="VarietySearchBar" Unfocused="VarietySearchBar_Unfocused" SearchButtonPressed="VarietySearchBar_SearchButtonPressed" />
+
+            <Grid x:Name="GridObsDate" Grid.Column="3" VerticalOptions="Center" IsVisible="{Binding ShowObsDate}">
+                <Label Text = "{Binding ObsDateVal}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="White" Margin="0,0,5,7"/>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GridObsDate_Tapped"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <!--<controls:HideableToolbarItem Name="ObsDate"  Order="Primary" Text = "{Binding ObsDateVal}" Clicked="ObsDate_Clicked"
+                                      IsVisible="{Binding ShowObsDate}" Source="{x:Reference VarietyPageT}"/>-->
+        <controls:HideableToolbarItem Name="TrialProperties"  Icon = "Assets/trialpropertiesNew.png" Order="Default"  Text="Trial Props." 
+                                      Command="{Binding TrialPropCommand}" CommandParameter="{Binding TrialPropertiesParams}"
+                                      IsVisible="{Binding ShowNewTrial}" Source="{x:Reference VarietyPageT}"/>
+        <controls:HideableToolbarItem Name="History" Icon = "Assets/history.png" Order="Default" Text = "{Binding HistoryDateVal}" Clicked="HistoryButton_Clicked"
+                                      IsVisible="{Binding ShowHistory}"  Source="{x:Reference VarietyPageT}"/>
+        <controls:HideableToolbarItem Name="Normal" Icon = "Assets/cancel.png"  Order="Default" Text = "Normal Mode" Clicked="Normal_Clicked"
+                                      IsVisible="{Binding ShowNormalObs}"  Source="{x:Reference VarietyPageT}"/>
+        <controls:HideableToolbarItem Name="Save" Icon = "{Binding UpdateModeIcon}" Order="Default" Text = "{Binding UpdateModeText}" Clicked="UpdateMode_Clicked"
+                                      IsVisible="{Binding ShowUpdateMode}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Info" Icon = "Assets/info.png" Order="Default" Text = "Trait Info" Clicked="TraitInfo_Clicked" 
+                                      IsVisible="{Binding ShowInfo}" Source="{x:Reference VarietyPageT}"/>
+        <controls:HideableToolbarItem Name="Add" Icon = "Assets/add.png" Order="Default" Text = "Add Variety" Clicked="AddVariety_Clicked" 
+                                      IsVisible="{Binding ShowAdd}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Update" Icon = "Assets/update.png" Order="Default" Text="Update" Clicked="Update_Clicked"
+                                      IsVisible="{Binding ShowUpdate}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Save" Icon = "Assets/save.png" Order="Default" Text = "Save" Clicked="Save_Clicked"
+                                      IsVisible="{Binding ShowSave}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Cancel" Icon = "Assets/cancel.png" Order="Default" Text = "Cancel" Clicked="Cancel_Clicked"
+                                      IsVisible="{Binding ShowCancel}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Picture" Icon = "Assets/gallery.png" Order="Default" Text="Gallery" Clicked="Gallery_Clicked"
+                                      IsVisible="{Binding ShowGallery}" Source="{x:Reference VarietyPageT}"/>
+        <controls:HideableToolbarItem Name="Picture" Icon = "Assets/camera.png" Order="Default" Text="Camera" Clicked="Picture_Clicked"
+                                      IsVisible="{Binding ShowCamera}" Source="{x:Reference VarietyPageT}" />
+        <controls:HideableToolbarItem Name="Ham" Icon = "Assets/hamburger.png" Order="Default" Text = "Hamburger" Clicked="hamburgerButton_Clicked"
+                                      IsVisible="{Binding ShowHamburger}" Source="{x:Reference VarietyPageT}"/>
+                    
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <!--All contents should be inside AbsoluteLayout-->
+        <AbsoluteLayout>
+            <!--Main ContentView: One ContentView active at a time-->
+            <ContentView x:Name="MainView" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer"
+                                 DrawerWidth ="400"
+                                 DrawerHeaderHeight="0"
+                                 Position="Right">
+                    <navigationdrawer:SfNavigationDrawer.ContentView>
+                        <Grid x:Name="mainContentView" BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <controls:CustomSearchBar x:Name="filterText"
+                                    Grid.Row="0"
+                                    IsVisible="true"
+                                    FontAttributes="Italic"
+                                    Placeholder="Search on all columns"
+                                    TextChanged="OnFilterTextChanged" />
+
+                            <datagrid:SfDataGrid
+                                      x:Name="DataGrid"
+                                      Grid.Row="1"
+                                      AllowSorting="True"
+                                      AllowTriStateSorting="True"
+                                      AllowMultiSorting="True"
+                                      AutoGenerateColumns="False"
+                                      AllowResizingColumn="True"
+                                      AllowSwiping="True"
+                                      AllowEditing="False"
+                                      AllowDraggingColumn="True"
+                                      CanUseViewFilter="True"
+                                      EditTapAction="OnTap"
+                                      ItemsSource="{Binding DataTableCollection, Mode=TwoWay}"
+                                      SelectionMode="Single"
+                                      NavigationMode="Row"
+                                      AllowKeyboardNavigation="True"
+                                      ColumnSizer="SizeToHeader"
+                                      EditorSelectionBehavior="SelectAll"
+                                      ImeOptions="NoExtractUi"
+                                      HeaderRowHeight="130"
+                                      AllowPullToRefresh="True"  
+                                
+                                      CurrentCellActivating="DataGrid_CurrentCellActivating"
+                                      CurrentCellBeginEdit="DataGrid_CurrentCellBeginEdit"
+                                      CurrentCellDropDownSelectionChanged="DataGrid_CurrentCellDropDownSelectionChanged"
+                                      CurrentCellEndEdit="DataGrid_CurrentCellEndEdit"
+                                      GridLongPressed="DataGrid_GridLongPressed"
+                                      GridTapped="DataGrid_GridTapped"
+                                      QueryCellStyle="DataGrid_QueryCellStyle"
+                                      QueryRowStyle="DataGrid_QueryRowStyle"
+                                      ScrollingMode="Pixel"
+                                      AllowDiagonalScrolling="False"
+                                      SelectionChanged="DataGrid_SelectionChanged"
+                                      EnableDataVirtualization="True"
+                                >
+
+                                <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                    <datagrid:GridTextColumn
+                                              MappingName="FieldNumber"
+                                              ColumnSizer="SizeToHeader"
+                                              AllowEditing="False">
+
+                                        <datagrid:GridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Label Text="No.   "  
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Center" 
+                                                       Rotation="270" 
+                                                       LineBreakMode="WordWrap"
+                                                       FontAttributes="Bold"/>
+                                            </DataTemplate>
+                                        </datagrid:GridTextColumn.HeaderTemplate>
+
+                                    </datagrid:GridTextColumn>
+                                    <datagrid:GridTextColumn
+                                              MappingName="VarietyName"
+                                              Width="100"
+                                              LineBreakMode="WordWrap"
+                                              AllowEditing="False">
+
+                                        <datagrid:GridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Label Text="Variety"  
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Center" 
+                                                       Rotation="270" 
+                                                       LineBreakMode="WordWrap" 
+                                                       FontAttributes="Bold"/>
+                                            </DataTemplate>
+                                        </datagrid:GridTextColumn.HeaderTemplate>
+
+                                    </datagrid:GridTextColumn>
+                                    <datagrid:GridTextColumn
+                                              MappingName="ResistanceHR"
+                                              ColumnSizer="SizeToHeader"
+                                              AllowEditing="False">
+
+                                        <datagrid:GridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Label Text="Res. HR"  
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Center" 
+                                                       Rotation="270" 
+                                                       LineBreakMode="WordWrap"
+                                                       FontAttributes="Bold"/>
+                                            </DataTemplate>
+                                        </datagrid:GridTextColumn.HeaderTemplate>
+
+                                    </datagrid:GridTextColumn>
+                                    <datagrid:GridTextColumn
+                                              MappingName="ResistanceIR"
+                                              ColumnSizer="SizeToHeader"
+                                              AllowEditing="False">
+
+                                        <datagrid:GridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Label Text="Res. IR"  
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Center" 
+                                                       Rotation="270" 
+                                                       LineBreakMode="WordWrap" 
+                                                       FontAttributes="Bold"/>
+                                            </DataTemplate>
+                                        </datagrid:GridTextColumn.HeaderTemplate>
+
+                                    </datagrid:GridTextColumn>
+                                    <datagrid:GridTextColumn
+                                              MappingName="ResistanceT" 
+                                              ColumnSizer="SizeToHeader"
+                                              AllowEditing="False">
+
+                                        <datagrid:GridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Label Text="Res. T"  
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Center" 
+                                                       Rotation="270" 
+                                                       LineBreakMode="WordWrap" 
+                                                       FontAttributes="Bold"/>
+                                            </DataTemplate>
+                                        </datagrid:GridTextColumn.HeaderTemplate>
+
+                                    </datagrid:GridTextColumn>
+
+
+                                </datagrid:SfDataGrid.Columns>
+
+                                
+
+                            </datagrid:SfDataGrid>
+                            <ActivityIndicator x:Name="BusyIndicator" Color="Red" Grid.Row="1" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+                            
+                        </Grid>
+                    </navigationdrawer:SfNavigationDrawer.ContentView>
+
+                    <navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                        <ScrollView VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <Grid Padding="10" RowSpacing="10" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" RowSpacing="3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Traitset" FontSize="Large" Grid.Row="0"/>
+                                    <Picker Grid.Row="1" x:Name="TraitsetPicker" Title="Choose Traitset" HorizontalOptions="FillAndExpand" ItemsSource="{Binding FieldSet}"
+                                        ItemDisplayBinding="{Binding FieldSetName}"
+                                        SelectedItem="{Binding TraitSelectedFirst,Mode=TwoWay}"
+                                        SelectedIndexChanged="TraitsetPicker_SelectedIndexChanged"/>
+
+                                </Grid>
+                                <Grid Grid.Row="1" RowSpacing="3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Fixed columns" FontSize="Large" Grid.Row="0"/>
+                                    <Picker Grid.Row="1" x:Name="FixedColumnPicker" Title="Choose fixed nr. of columns" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FixedColumnPicker_SelectedIndexChanged" >
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                                <x:String>6</x:String>
+                                                <x:String>7</x:String>
+                                                <x:String>8</x:String>
+                                                <x:String>9</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Grid>
+
+                                <Grid Grid.Row="2" RowSpacing="3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Fixed rows" FontSize="Large" Grid.Row="0"/>
+                                    <Picker Grid.Row="1" x:Name="FixedRowPicker" Title="Choose fixed nr. of rows" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FixedRowPicker_SelectedIndexChanged" >
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>0</x:String>
+                                                <x:String>1</x:String>
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                                <x:String>6</x:String>
+                                                <x:String>7</x:String>
+                                                <x:String>8</x:String>
+                                                <x:String>9</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Grid>
+                                <Button  Text="Default Traitset" x:Name="BtnDefaultTraitSet" Grid.Row="3" HeightRequest="50" Clicked="BtnDefaultTraitSet_Clicked" BackgroundColor="LightGray"/>
+
+
+                                <Button Text="Choose Traits" Grid.Row="4" HeightRequest="50" Clicked="btnChooseColumn_Clicked"  BackgroundColor="LightGray" />
+                            </Grid>
+                        </ScrollView>
+                    </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                </navigationdrawer:SfNavigationDrawer>
+            </ContentView>
+
+            <!--Choose Column popup-->
+            <ContentView x:Name="ChooseColumnPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,5" IsVisible="False" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="10" MinimumHeightRequest="500" MinimumWidthRequest="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Choose Columns" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                        <mr:Label x:Name="LblCloseChooseColumnPopup" Text="  X  " Tapped="LblCloseChooseColumnPopup_Tapped" FontSize="Large" FontAttributes="None" Padding="0" TranslationX="5"/>
+                    </StackLayout>
+
+                    <controls:CustomSearchBar Placeholder="Search traits..."
+                                CancelButtonColor="Orange"
+                                PlaceholderColor="Orange"
+                                TextColor="Orange"
+                                HorizontalTextAlignment="Center"
+                                FontSize="Medium"
+                                              x:Name="SearchTraits"
+                                FontAttributes="Italic" TextChanged="SearchTrait_OnTextChanged" Grid.Row="1">
+
+                    </controls:CustomSearchBar>
+
+                    <listView:SfListView x:Name="AllTraitsListView" Grid.Row="2"
+                        ItemsSource="{Binding TraitsAll, Mode=TwoWay}"
+                        ItemSize="30">
+                        <listView:SfListView.LayoutManager>
+                            <listView:GridLayout SpanCount="5"/>
+                        </listView:SfListView.LayoutManager>
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <sfButton:SfCheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Text="{Binding ColumnLabel, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10" FlowDirection="RightToLeft" Grid.Row="3">
+                        <Button x:Name="bntChooseColOk" WidthRequest="90" Text="OK" Clicked="bntChooseColOk_Clicked"/>
+                        <Button x:Name="btnChoosecolCancel" WidthRequest="90" Text="Cancel" Clicked="btnChoosecolCancel_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </ContentView>
+
+            <!--picture popup-->
+            <ContentView  x:Name="PhotoUploadPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="False" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="25,15" RowSpacing="5" HeightRequest="140" WidthRequest="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.1*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label  Grid.Row="0" TextColor="Black" Text="Add Image" FontSize="Medium" FontAttributes="Bold"/>
+                    <mr:Label x:Name="LblCamera" Grid.Row="1" TextColor="Black" Text="With Camera" FontSize="Medium" Tapped="LblCamera_Tapped" />
+                    <mr:Label x:Name="LblGallery" Grid.Row="2" TextColor="Black" Text="From Gallery" FontSize="Medium" Tapped="LblGallery_Tapped" />
+
+                    <mr:Label VerticalOptions="Start" VerticalTextAlignment="Start" TranslationX="25" Margin="0" Grid.Row="0" Grid.Column="1" TextColor="Black" Text="  X  " FontSize="Medium" Tapped="CloseAddImage_Tapped"/>
+                </Grid>
+            </ContentView>
+
+            <!--preview popup-->
+            <ContentView x:Name="showImagePreviewPopup" BackgroundColor="#BF000000" IsVisible="{Binding ImagePrevPopup, Mode=TwoWay}" Padding="20,20,20,40" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <ScrollView>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" MinimumHeightRequest="300" MinimumWidthRequest="500" BackgroundColor="White" Padding="10">
+                        <Label Text="Use this image?" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                        <Grid x:Name="PrevGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--<Image HeightRequest="400" WidthRequest="600" Source="{Binding ImageToUpload}" Grid.RowSpan="2" Aspect="AspectFit"/>-->
+                            <!--<ff:CachedImage Source="{Binding ImageToUpload, Mode=TwoWay}" HeightRequest="400" WidthRequest="600" Grid.RowSpan="2" Aspect="AspectFit"/>-->
+                            <Label Text="{Binding ImageToUploadText}" BackgroundColor="LightGray" TextColor="White" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                        </Grid>
+                        <Label Text="Trait" FontSize="Medium" TextColor="Black"></Label>
+                        <Picker
+                             x:Name="TraitListForImage"
+                                IsVisible="True" 
+                                ItemsSource="{Binding traitsOnGrid}"
+                                Title ="Picture applies to:"
+                                HorizontalOptions="Fill"
+                                BackgroundColor="Transparent"
+                                ItemDisplayBinding="{Binding ColumnLabel}"
+                                TextColor="#555"
+                                VerticalOptions="FillAndExpand" 
+                                FontSize="16"
+                            ios:Picker.UpdateMode="WhenFinished"
+                                />
+
+                        <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" HeightRequest="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="btnConfirm" Grid.Column="0" Clicked="btnConfirm_Clicked" Text="Yes" IsVisible="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Button x:Name="btnNo" Grid.Column="1" Clicked="btnNo_clicked" Text="No" IsVisible="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+            
+            <!--<ContentView x:Name="showImagePreviewPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding ImagePrevPopup}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" BackgroundColor="White" Padding="10">
+                    <Label Text="Use this image?" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                    <AbsoluteLayout>
+                        <Image HeightRequest="400" WidthRequest="600" Source="{Binding ImageToUpload}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" />
+                        <Label Text="test text"></Label>
+                    </AbsoluteLayout>
+                    
+                    <Button x:Name="btnConfirm" Clicked="btnConfirm_Clicked" Text="Yes" HeightRequest="50"/>
+                    <Button x:Name="btnNo" Clicked="Label_Tapped_1" Text="No" HeightRequest="50"/>
+                </StackLayout>
+            </ContentView>-->
+
+            <!--Add Variety popup-->
+            <ContentView  x:Name="AddVarietyPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding AddVarietyPopupVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" MinimumHeightRequest="300" MinimumWidthRequest="500" BackgroundColor="White" Padding="10">
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Add variety" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                        <mr:Label x:Name="LblClosePopup" Text="  X  " Tapped="LblClosePopup_Tapped" FontSize="Large" FontAttributes="None" Padding="0" TranslationX="5"/>
+                    </StackLayout>
+                    <controls:CustomEntry x:Name="EntryNumber" WidthRequest="500" HeightRequest="50" Placeholder="Number" Text="{Binding ConsecutiveNumber,Mode=TwoWay}" VerticalOptions="Fill" Margin="0,5,0,0" ReturnType="Next" Completed="EntryNumber_Completed"/>
+                    <controls:CustomEntry x:Name="EntryVarietyName" WidthRequest="500" HeightRequest="50" Placeholder="Variety name" Text="{Binding VarietyName,Mode=TwoWay}" VerticalOptions="Fill" ReturnType="Next" Completed="EntryVarietyName_Completed"/>
+
+                    <Label IsVisible="{Binding DisplayMessage, Mode=TwoWay}" Text="{Binding ConfirmationMessage}" TextColor="{Binding ConfirmationColor}" FontSize="18" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,5"/>
+                    <Button x:Name="btnAddVarietyToTrial" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Text="ADD TO TRIAL"
+                            TextColor="White" BorderColor="{Binding ButtonColor}" BackgroundColor="{Binding ButtonColor}" HeightRequest="60" Margin="0,5,0,0"
+                            IsEnabled="{Binding ButtonEnabled,Mode=TwoWay}" Clicked="BtnAddVarietyToTrial_Clicked"/>
+
+                </StackLayout>
+            </ContentView>
+
+            <DatePicker x:Name="ObsDatePicker" Focused="ObsDatePicker_Focused" MaximumDate="{Binding MaxDate}" DateSelected="ObsDatePicker_DateSelected" IsVisible="False" />
+            
+            <!-- History popup-->
+            <ContentView  x:Name="HistoryPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding HistoryGridVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout   VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" MinimumHeightRequest="300" MinimumWidthRequest="400" BackgroundColor="White" Padding="10"  >
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Observation History" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                        <mr:Label  Text="  X  " Tapped="Label_Tapped" FontSize="Large" FontAttributes="None" Padding="0" TranslationX="5"/>
+                    </StackLayout>
+                    <datagrid:SfDataGrid x:Name="historyGrid"
+                                       HeightRequest="550"         
+                                       SelectionMode="Single"
+                                       VerticalOverScrollMode="Bounce"
+                                       NavigationMode="Row"
+                                       SelectionChanged="HistoryGrid_SelectionChanged"    
+                                        AutoGenerateColumns="False" 
+                                               FrozenRowsCount="1">
+                        <datagrid:SfDataGrid.Columns >
+                            <datagrid:GridTextColumn HeaderText="Date Created"
+                                                   MappingName="DateCreated" AllowEditing="False" Width="150" />
+                            <datagrid:GridTextColumn HeaderText="User"
+                                                   MappingName="UserIDCreated"
+                                                   AllowEditing="False" Width="150"/>
+                        </datagrid:SfDataGrid.Columns>
+                    </datagrid:SfDataGrid>
+                </StackLayout>
+            </ContentView>
+
+            <!--Trait Info popup-->
+            <ContentView x:Name="TraitInfoPopup" BackgroundColor="#BF000000"  Padding="10" IsVisible="{Binding TraitInfoVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="{Binding TraitInfoPopupHeight}" WidthRequest="360" BackgroundColor="White" Margin="10" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Style="{DynamicResource TitleStyle}" FontAttributes="Bold" Text="Trait info" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                    <ScrollView Grid.Row="1">
+                        <Grid x:Name="PopupGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,5" Padding="5" RowSpacing="0">
+                            <!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>-->
+                        </Grid>
+                    </ScrollView>
+                    <Button Grid.Row="2" Text="Ok" Clicked="TraitInfoPopupOk_Clicked" VerticalOptions="End" HorizontalOptions="Center" WidthRequest="100" BorderWidth="1" BorderColor="DarkGray"/>
+
+                </Grid>
+            </ContentView>
+
+            <!--Trait editor popup-->
+            <ContentView x:Name="TraitEditorPopup" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding TraitEditorPopupVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" MinimumHeightRequest="300" MinimumWidthRequest="500" BackgroundColor="White" Padding="10" Spacing="10">
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="{Binding EditorColumnLabel}" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                        <mr:Label x:Name="LblClosePopupTE" Text="  X  " Tapped="LblClosePopupTE_Tapped" FontSize="Large" FontAttributes="None" Padding="0" TranslationX="5"/>
+                    </StackLayout>
+
+                    <Frame Padding="0" BorderColor="Gray" HasShadow="True">
+                        <controls:CustomEditor x:Name="TraitEditor" Text="{Binding TraitEditorText}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                HeightRequest="170" WidthRequest="400" IsReadOnly="{Binding EditorReadOnly}" BackgroundColor="Teal">
+                            <controls:CustomEditor.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <OnPlatform.Platforms>
+                                        <On Platform="Android" Value="5,5,5,-7" />
+                                        <On Platform="iOS" Value="5,5,5,-7" />
+                                        <On Platform="UWP" Value="5" />
+                                    </OnPlatform.Platforms>
+                                </OnPlatform>
+                            </controls:CustomEditor.Margin>
+                        </controls:CustomEditor>
+                    </Frame>
+                    <Button Text="Ok" Clicked="TraitEditorPopupOk_Clicked" VerticalOptions="End" HorizontalOptions="Center" WidthRequest="100" BorderWidth="1" BorderColor="DarkGray"/>
+                </StackLayout>
+            </ContentView>
+
+            <!--picture viewer-->
+            <ContentView x:Name="PictureViewerPopUp" BackgroundColor="#BF000000" Padding="20,20,20,40" IsVisible="{Binding PictureviewerPopupVisible}"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Orientation="Vertical">
+                    <mr:Label x:Name="PictureCloseLabel" Text=" X    " Tapped="PictureCloseLabel_Tapped" FontSize="Large" FontAttributes="None" Padding="0" Margin="0,0,5,0" TranslationX="5" HorizontalOptions="EndAndExpand"/>
+                    <carousel:SfCarousel x:Name="carousel" ViewMode="Default" ItemSpacing="1" ItemsSource="{Binding TrialImages}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" SelectionChanged="carousel_SelectionChanged">
+                        <carousel:SfCarousel.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Image Source="{Binding ImageSource}" Aspect="Fill" Grid.ColumnSpan="2"/>-->
+                                    <ff:CachedImage Source="{Binding ImageSource}" Aspect="Fill" Grid.ColumnSpan="2"/>
+                                    <Label Text="{Binding Title}" Grid.Row="1" />
+                                    <!--<ImageButton Source="Assests/close.png" Grid.Column="1" Grid.Row="1"></ImageButton>-->
+                                    <Button Text="Delete" Clicked="DeleteImage_clicked" Grid.Column="1" Grid.Row="1" WidthRequest="100" HorizontalOptions="EndAndExpand" IsVisible="{Binding Deletevisible}"/>
+                                </Grid>
+                                <!--<imageeditor:SfImageEditor Source="{Binding ImageSource}"/>-->
+
+                            </DataTemplate>
+                        </carousel:SfCarousel.ItemTemplate>
+                    </carousel:SfCarousel>
+                </StackLayout>
+                
+                <!--<StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Vertical"  BackgroundColor="White" Padding="10" Spacing="10">
+                    
+                </StackLayout>-->
+            </ContentView>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

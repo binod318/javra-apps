@@ -1,0 +1,140 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	<NoWarn>67</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+	<NoWarn>67</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controls\DateTimePicker.cs" />
+    <Compile Remove="UserControls\ChooseColumn.xaml.cs" />
+    <Compile Remove="UserControls\CustomDateTimeColumn.cs" />
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
+    <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
+    <Compile Remove="ViewModels\ItemsViewModel.cs" />    
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+    <Compile Remove="Views\VarietyPageTablet.xaml - Copy %282%29.cs" />
+    <Compile Remove="Views\VarietyPageTablet.xaml - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="UserControls\ChooseColumn.xaml" />
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemsPage.xaml" />
+    <EmbeddedResource Remove="Views\NewItemPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.37.0" />
+    <PackageReference Include="MR.Gestures" Version="2.1.3" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="PhotoBrowser.Forms" Version="0.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.35" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="18.3.0.35" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.35" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="18.3.0.35" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.3.0.35" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="5.0.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />  
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />  
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1560" />  
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrialApp.Common\TrialApp.Common.csproj" />
+    <ProjectReference Include="..\TrialApp.Entities\TrialApp.Entities.csproj" />
+    <ProjectReference Include="..\TrialApp.ServiceClient\TrialApp.ServiceClient.csproj" />
+    <ProjectReference Include="..\TrialApp.Services\TrialApp.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\LocationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ObservationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignInPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TransferPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TrialPropertiesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VarietyPageTablet.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Syncfusion.Core.XForms">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.Core.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.Portable">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.Portable">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.GridCommon.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfComboBox.XForms">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.SfComboBox.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGrid.XForms">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.SfDataGrid.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms">
+      <HintPath>..\Assembly\netstandard2.0\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\References\10.0.18362.0\Windows.Foundation.UniversalApiContract\8.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\FilterPage.xaml.cs">
+      <DependentUpon>FilterPage</DependentUpon>
+    </Compile>
+    <Compile Update="Views\VarietyPageTabletUWP.xaml.cs">
+      <DependentUpon>VarietyPageTabletUWP.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\SettingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>

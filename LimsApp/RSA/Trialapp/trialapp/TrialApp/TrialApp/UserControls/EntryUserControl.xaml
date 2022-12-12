@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:MRGesture="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             xmlns:BindablePickerControl="clr-namespace:TrialApp.Controls;assembly=TrialApp"
+             xmlns:local="clr-namespace:TrialApp.Controls;assembly=TrialApp"
+             x:Class="TrialApp.UserControls.EntryUserControl"
+             BindingContext="{Binding}">
+
+    <ContentView.Content>
+        <BindablePickerControl:CustomListView x:Name="listView" ItemsSource="{Binding}" SeparatorVisibility="None" BackgroundColor="Transparent" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <BindablePickerControl:CustomViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <MRGesture:Grid  Margin="0,3" LongPressing="Grid_LongPressing" LongPressingCommandParameter="{Binding}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <!--Column Label-->
+                                    <ColumnDefinition Width="110"/>
+                                    <!--Change Indicator-->
+                                    <ColumnDefinition Width="5" />
+                                    <!--Column Value-->
+                                    <ColumnDefinition Width="*" />
+                                    <!--Today button-->
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!--Revert button-->
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!--History data level
+                                <ColumnDefinition Width="Auto"/>-->
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.ColumnSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="2" Android="3"/>
+                                </Grid.ColumnSpacing>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding ColumnLabel}"   FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap"/>
+                                    <Label Text="{Binding TraitName}"  IsVisible="False" ></Label>
+                                    <Label Text="{Binding DataType}" IsVisible="False" ></Label>
+                                    <Label Text="{Binding MinValue}" IsVisible="False" ></Label>
+                                    <Label Text="{Binding MaxValue}" IsVisible="False" ></Label>
+                                    <Label Text="{Binding Description}" IsVisible="False" ></Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" ></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <BoxView Grid.Column="1" BackgroundColor ="Red" IsVisible="{Binding ValidationErrorVisible}" VerticalOptions="CenterAndExpand" WidthRequest="5"/>
+                                <BoxView Grid.Column="1" BackgroundColor ="Green" IsVisible="{Binding ChangedValueVisible}" VerticalOptions="CenterAndExpand" WidthRequest="5"/>
+
+                                <local:CustomEntry  Text="{Binding ObsValue,Mode=TwoWay}"
+                                  Grid.Column="2"
+                                  IsVisible="{Binding CharVisible}"
+                                  BackgroundColor ="Transparent"
+                                  IsEnabled="{Binding Updatable}"
+                                  Margin="0,0,0,0"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  ClassId="{Binding Tag}"
+                                  Unfocused="OnUnFocusEx"
+                                  TextChanged="Entry_OnTextChangedEx"
+                                  Focused="OnFocusEX" >
+                                </local:CustomEntry>
+                                <local:CustomEntry  Text="{Binding ObsValue,Mode=TwoWay}"
+                                  Grid.Column="2"
+                                  IsVisible="{Binding IntOrDecVisible}"
+                                  Keyboard="Numeric"
+                                  BackgroundColor ="Transparent"
+                                  IsEnabled="{Binding Updatable}"
+                                  Margin="0,0,0,0"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  ClassId="{Binding Tag}"
+                                  Unfocused="OnUnFocusEx"
+                                  TextChanged="Entry_OnTextChangedEx"
+                                  Focused="OnFocusEX">
+                                </local:CustomEntry>
+                                <local:CustomEntry  x:Name="DateEntry"
+                                  Grid.Column="2"
+                                  IsEnabled="{Binding Updatable}"
+                                  Text="{Binding DateValueString, Mode=TwoWay}"
+                                  IsVisible="{Binding DateVisible}"
+                                  ClassId="{Binding Tag}"
+                                  Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  Focused="OnFocusEX">
+                                </local:CustomEntry>
+                                <Picker
+                                  Grid.Column="2"
+                                  x:Name="listPicker"
+                                  IsEnabled="{Binding Updatable}"
+                                  Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                                  BackgroundColor="Transparent"
+                                  IsVisible="{Binding ListVisible}"
+                                  ItemsSource = "{Binding ListSource, Mode=TwoWay}"
+                                  ItemDisplayBinding = "{Binding TraitValueName, Mode=TwoWay}"
+                                  SelectedItem="{Binding ObsItemPicker,Mode=TwoWay}"
+                                  ClassId="{Binding Tag}"
+                                  SelectedIndexChanged="OnSelectedIndexChangedEx"/>
+
+                                <BindablePickerControl:NullableDatePicker x:Name="datepickercontrol"
+                                  Grid.Column="2"
+                                  IsEnabled="{Binding Updatable}"
+                                  Format="yyyy-MM-dd"
+                                  NullableDate="{Binding DateValue, Mode=TwoWay}"
+                                  IsVisible="{Binding DatePickerVisible}"
+                                  ClassId="{Binding Tag}"
+                                  Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  DateSelected="OnDateSelectedEx"
+                                  Unfocused="OnDatePicker_Unfocused">
+                                </BindablePickerControl:NullableDatePicker>
+
+                                <Image x:Name="ImgToday" HeightRequest="40" WidthRequest="45" Aspect="AspectFit" Grid.Column="3" Source="Assets/clock.png" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding DateVisible}" ClassId="{Binding Tag}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClickedEx"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                    <!--<Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="40" Android="40"/>
+                                </Image.HeightRequest>
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="45" Android="45"/>
+                                </Image.WidthRequest>-->
+                                    <Image.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness" Default="0,0,0,0">
+                                            <On Platform="iOS">0,0,0,0</On>
+                                            <On Platform="Android">2,0,8,0</On>
+                                            <On Platform="UWP">2,0,8,0</On>
+                                        </OnPlatform>
+                                    </Image.Margin>
+                                </Image>
+
+                                <Image x:Name="ImgRevert" Aspect="AspectFit" Grid.Column="4" HeightRequest="40" WidthRequest="45" Source="Assets/revert.png" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" ClassId="{Binding Tag}" IsVisible="{Binding RevertVisible}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnRevertClickedEX"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                    <!--<Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="40" Android="40"/>
+                                </Image.HeightRequest>
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="45" Android="45"/>
+                                </Image.WidthRequest>-->
+                                </Image>
+                                <!--<Label   Grid.Column="5"  HeightRequest="40" WidthRequest="45" ClassId="{Binding Tag}" IsVisible="{Binding PrevObsVisible}" Text="{Binding PrevObsValue}"/>
+-->
+                            </MRGesture:Grid>
+                            <local:CustomEntry  Text="{Binding PrevObsValue}" IsVisible="{Binding PrevObsVisible}" MinimumWidthRequest="100" WidthRequest="100" IsEnabled="False"/><!--IsVisible="{Binding PrevObsVisible}"--> 
+                            </StackLayout>
+                    </BindablePickerControl:CustomViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </BindablePickerControl:CustomListView>
+    
+    </ContentView.Content>
+</ContentView>

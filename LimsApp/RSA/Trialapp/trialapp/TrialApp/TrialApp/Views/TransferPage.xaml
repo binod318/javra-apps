@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TrialApp.Controls"
+             x:Class="TrialApp.Views.TransferPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="Download" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="-15,0,0,0" iOS="20,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>-15,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>20,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter" Order="Primary" Icon = "{Binding FilterIcon}" Command="{Binding GoToFilterScreen}" CommandParameter="{Binding}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<StackLayout Orientation="Vertical" Padding="5,5,5,0" Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <controls:CustomEntry Grid.Row="0" x:Name="EntrySearch" Placeholder="search trial" IsVisible="{Binding SearchVisible}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"
+                                 HeightRequest="40" BackgroundColor="Transparent" Text="{Binding SearchText,Mode=TwoWay}" IsEnabled="{Binding EnableControls}" Margin="5,0,0,0"/>
+
+                    <Image Grid.Row="0" Grid.Column="1" x:Name="ImageSearch" Source="Assets/search.png" WidthRequest="30" HeightRequest="30" Margin="10,0" Aspect="AspectFit" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" IsVisible="{Binding EnableControls, Mode=TwoWay}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SearchImage_Click"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </Grid>
+            </StackLayout>-->
+
+            <controls:CustomSearchBar Placeholder="Search trials..."
+                                    CancelButtonColor="Orange"
+                                    PlaceholderColor="Orange"
+                                      IsSpellCheckEnabled="False"
+                                    TextColor="Orange"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="Medium"
+                                    FontAttributes="Italic" TextChanged="CustomSearchBar_TextChanged">
+                <controls:CustomSearchBar.Margin>
+                    <!--<OnPlatform x:DataType="Thickness" Android="-5,5,5,0" iOS="0,5,0,0"/>-->
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <OnPlatform.Android>-5,5,5,0</OnPlatform.Android>
+                        <OnPlatform.iOS>0,5,0,0</OnPlatform.iOS>
+                    </OnPlatform>
+                </controls:CustomSearchBar.Margin>
+                <controls:CustomSearchBar.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>None</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </controls:CustomSearchBar.Keyboard>
+            </controls:CustomSearchBar>
+
+            <ActivityIndicator Grid.Row="1"  HorizontalOptions ="FillAndExpand" VerticalOptions ="FillAndExpand" IsVisible="{Binding IsBusy}" IsRunning ="{Binding IsBusy}" Color="#2B7DF4"/>
+            <Button Grid.Row="2" VerticalOptions="Fill" Text="{Binding BtnSelectTxt}" TextColor="White" BorderColor="#2B7DF4" Command="{Binding SelectAllCommand}"
+                IsEnabled="{Binding LoginButtonEnable,Mode=TwoWay}" BackgroundColor="#2B7DF4" Margin="-3,0"/>
+
+            <ListView Grid.Row="3" x:Name="UsersView" ItemsSource="{Binding TrialList}"  RowHeight="70" Margin="10,0" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions ="Start" VerticalOptions="CenterAndExpand" >
+                                        <Label Text="{Binding TrialName}"  FontSize="Medium" LineBreakMode="TailTruncation" FontAttributes="Bold"/>
+                                        <Label Text="{Binding TrialDetails}" FontSize="Micro" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="EndAndExpand" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Grid.Column="1"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="4" BorderWidth="1" BorderColor="#2B7DF4" TextColor="White" Margin="10,5"  BackgroundColor="#2B7DF4" HeightRequest="60" 
+                    Text="{Binding BtnDownloadTxt}" Command="{Binding DownloadCommand}" IsVisible="{Binding BtnDownloadVisible}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

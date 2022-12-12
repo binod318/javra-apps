@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+  <key>NSCameraUsageDescription</key>
+  <string>App requires permission to Camera for taking Pictures.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>App requires permission to access Photos</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>App requires permission to save Pictures to Gallery.</string>
+	<key>CFBundleDisplayName</key>
+	<string>TrialAppTest</string>
+  <key>CFBundleName</key>
+  <string>TrialAppTest</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.TrialApp.Test</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We are using your location</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImages.launchimage</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>external-accessory</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSUbiquitousContainers</key>
+	<dict>
+		<key>iCloud.com.enzazaden.TrialAppTest</key>
+		<dict>
+			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
+			<true/>
+			<key>NSUbiquitousContainerSupportedFolderLevels</key>
+			<string>One</string>
+		</dict>
+	</dict>
+	<key>Subject</key>
+	<string>Trialapp Database backup</string>
+	<key>BodyText</key>
+	<string>Trialapp iPhone Database backup file is attached here.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.TrialApp.Test</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msauth.com.TrialApp.Test://auth</string>
+			</array>
+		</dict>
+	</array>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>msauthv2</string>
+    <string>msauthv3</string>
+  </array>
+</dict>
+</plist>

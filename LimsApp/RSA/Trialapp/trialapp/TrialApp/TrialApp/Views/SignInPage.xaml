@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TrialApp.Controls"
+             x:Class="TrialApp.Views.SignInPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="Sign in" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="-75,0,0,0" iOS="-30,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>-75,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>-30,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Label Text="ENZA TRIALS" VerticalOptions="Center"  HorizontalOptions="Start" FontSize="20"/>
+                <controls:CustomEntry HeightRequest="50" Placeholder="Username" Keyboard="Url" Text="{Binding UserName,Mode=TwoWay}"   VerticalOptions="Fill" Margin="0,10,0,0" IsEnabled="{Binding UserNameEnable}"/>
+                <controls:CustomEntry HeightRequest="50" IsPassword="True" Text="{Binding Password,Mode=TwoWay}"  Placeholder="Password" VerticalOptions="Fill" Margin="0,10,0,10" IsEnabled="{Binding PasswordEnable}"/>
+                <Label Text="{Binding ErrorMessage,Mode=TwoWay}" IsVisible="{Binding ErrorMsgVisible}" TextColor="Red" VerticalOptions="Center" Grid.Row="4" HorizontalOptions="Start" FontSize="18"/>
+                <ActivityIndicator Color="#2B7DF4" HorizontalOptions ="FillAndExpand" VerticalOptions ="Fill" IsVisible="{Binding IsBusy}" IsRunning ="{Binding IsBusy}"/>
+                <Button VerticalOptions="End" Text="SIGN IN" 
+                        Command="{Binding LogInCommand}" TextColor="White"
+                        CommandParameter="{Binding}"
+                        IsEnabled="{Binding LoginButtonEnable,Mode=TwoWay}"
+                        BackgroundColor="{Binding ButtonColor}" HeightRequest="60" 
+                        Margin="0,10,0,0"/>
+                <Label  VerticalTextAlignment="Center"  FontSize="18" Margin="0,10,0,20"
+                        Text="You need to be authorized to download or submit trials. Please sign in." />
+                <Button HorizontalOptions="FillAndExpand" VerticalOptions="End"
+                        Command="{Binding CancelSignIn}"
+                        CommandParameter="{Binding}"
+                        Text="CONTINUE WITHOUT SIGN IN" HeightRequest="60" BorderWidth="1"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

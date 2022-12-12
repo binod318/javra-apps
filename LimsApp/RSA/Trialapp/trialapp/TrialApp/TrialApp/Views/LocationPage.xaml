@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="TrialApp.Views.LocationPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="GPS" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+            <Label.Margin>
+                <!--<OnPlatform Android="-75,0,0,0" iOS="-30,0,0,0"/>-->
+                <OnPlatform x:TypeArguments="Thickness">
+                    <OnPlatform.Android>-75,0,0,0</OnPlatform.Android>
+                    <OnPlatform.iOS>-30,0,0,0</OnPlatform.iOS>
+                </OnPlatform>
+            </Label.Margin>
+        </Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  Padding="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <Frame x:Name="HeaderFrame"  BackgroundColor="{Binding HeaderColor, Mode=TwoWay}" Padding="10,0"  Margin="-13,-10" HeightRequest="60">
+                <StackLayout Orientation="Vertical" Spacing="5" VerticalOptions="CenterAndExpand">
+                    <Label Text="{Binding CurrentTrialName}" TextColor="{Binding HeaderTextColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" FontSize="20" />
+                </StackLayout>
+            </Frame>
+            
+            <Button x:Name="CurrentGPS" Text="Use current coordinates" Clicked="GetPosition_Click" Margin="0,5,0,0" HorizontalOptions="FillAndExpand" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Latitude"/>
+                <Label Text="Longitude" Grid.Column="1"/>
+                <Entry x:Name ="Latitude"  
+                                Text="{Binding Latitude}"
+                                Grid.Row="1" 
+                                ClassId="Latitude"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand" Unfocused="LongitudeLatitude_Unfocused" Keyboard="Numeric"/>
+                <Entry x:Name ="Longitude"  
+                                Text="{Binding Longitude}"
+                                Grid.Column="1" Grid.Row="1"
+                                ClassId="Longitude"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand" Unfocused="LongitudeLatitude_Unfocused" Keyboard="Numeric"/>
+                <Button Text="Update" Grid.Row="1" Grid.Column="2" Clicked="BtnUpdate_Clicked" HorizontalOptions="End"/>
+            </Grid>
+
+                <maps:Map WidthRequest="500" 
+                            HeightRequest="100" 
+                            x:Name="MyMap"
+                            MapType="Hybrid">
+                    <maps:Map.IsShowingUser>
+                        <OnPlatform x:TypeArguments="x:Boolean">
+                            <On Platform="iOS">True</On>
+                            <On Platform="Android">True</On>
+                            <On Platform="UWP">False</On>
+                        </OnPlatform>
+                    </maps:Map.IsShowingUser>
+                </maps:Map>
+
+                <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnStreetView" Text="Street" Clicked="BtnStreet_Click"/>
+                <Button x:Name="BtnSatellite" Text="Satellite" Clicked="BtnSatellite_Click" Grid.Column="1"/>
+                <Button x:Name="BtnHybrid" Text="Hybrid" Clicked="BtnHybrid_Click" Grid.Column="2"/>
+            </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

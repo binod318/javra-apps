@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrialApp.Views.SettingPage"
+             xmlns:viewModels="clr-namespace:TrialApp.ViewModels"
+             xmlns:controls="clr-namespace:TrialApp.Controls"
+             x:Name="SettingPageT">
+
+    <NavigationPage.TitleView>
+        <Label Margin="{Binding TitleMargin}" Text="Settings" TextColor="White" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+    </NavigationPage.TitleView>
+    
+    <ContentPage.BindingContext>
+        <viewModels:SettingPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <controls:HideableToolbarItem Text="Sign out" Order="Primary" Icon ="Assets/signout.png" Activated="SignOut_Activated" Priority="1"
+                                      IsVisible="{Binding IsSignOutVisible}" Source="{x:Reference SettingPageT}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <!--All contents should be inside AbsoluteLayout-->
+        <AbsoluteLayout>
+
+            <!--Main ContentView: One ContentView active at a time-->
+            <ContentView x:Name="MainView" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <ScrollView>
+                    <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Margin="10">
+
+                        <Grid RowSpacing="25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" VerticalOptions="FillAndExpand" BackgroundColor="#eee"  IsVisible="True">
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal" >
+
+                                        <!--<Grid BackgroundColor="Teal" HorizontalOptions="StartAndExpand"></Grid>-->
+                                        <StackLayout HorizontalOptions="StartAndExpand" Spacing="0">
+                                            <StackLayout.Orientation>
+                                                <OnIdiom x:TypeArguments="StackOrientation">
+                                                    <OnIdiom.Phone>Vertical</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>Horizontal</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </StackLayout.Orientation>
+                                            <Label Text="Automatic data synchronization " VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="Black"/>
+                                            <Label Text="(for downloaded trials)" VerticalOptions="Center" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" FontSize="Small" TextColor="#888"/>
+                                        </StackLayout>
+                                        
+                                        <Switch x:Name="AutoSyncSwitch" HorizontalOptions="EndAndExpand" Toggled="AutoSyncSwitch_Toggled" IsToggled="{Binding AutoSyncToggle}"/>
+                                        
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" IsVisible="{Binding AutoSyncToggle}">
+
+                                        <Label Text="Time interval (in minute)" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="#777"/>
+                                        <!--<Entry x:Name="TxtTimeInterval" HorizontalTextAlignment="End" Text="{Binding TimeInterval, Mode=TwoWay}" Keyboard="Numeric" HorizontalOptions="EndAndExpand" WidthRequest="60" 
+                                               Focused="TxtTimeInterval_Focused"
+                                               Unfocused="TxtTimeInterval_Unfocused"/>-->
+
+                                        <Picker x:Name="TimeIntervalPicker" Title="Choose time interval" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" WidthRequest="50" SelectedIndexChanged="TimeIntervalPicker_SelectedIndexChanged" SelectedItem="{Binding TimeInterval}">
+                                            <Picker.ItemsSource>
+                                                <x:Array Type="{x:Type x:String}">
+                                                    <x:String>5</x:String>
+                                                    <x:String>10</x:String>
+                                                    <x:String>20</x:String>
+                                                    <x:String>30</x:String>
+                                                    <x:String>45</x:String>
+                                                    <x:String>60</x:String>
+                                                </x:Array>
+                                            </Picker.ItemsSource>
+                                        </Picker>
+
+                                    </StackLayout>
+                                    
+                                </StackLayout>
+                            </Frame>
+                            
+                            <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                                <Label Text="Choose layout for main screen" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="#888"/>
+
+                                <Picker Grid.Row="1" x:Name="layoutPicker" Title="Choose layout" HorizontalOptions="FillAndExpand" SelectedIndexChanged="LayoutPicker_SelectedIndexChanged" SelectedIndex="{Binding DefaultLayout}">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Grid view</x:String>
+                                            <x:String>List view</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+
+                            </StackLayout>
+
+                            <Grid Grid.Row="2" x:Name="mainGrid" HorizontalOptions="FillAndExpand" Margin="10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame HasShadow="True" IsVisible="{Binding GridviewVisible}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0" OutlineColor="#888"
+                                       HeightRequest="250" WidthRequest="185">
+                                    <Grid x:Name="GridForGridView" Margin="10" >
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <BoxView BackgroundColor="Teal" Grid.Row="0" Grid.Column="0" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="0" Grid.Column="1" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="1" Grid.Column="0" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="1" Grid.Column="1" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="2" Grid.Column="0" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="2" Grid.Column="1" Margin="5"></BoxView>
+
+                                    </Grid>
+                                </Frame>
+
+                                <Frame HasShadow="True" IsVisible="{Binding ListviewVisible}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0" OutlineColor="#888"
+                                       HeightRequest="250" WidthRequest="250">
+                                    <Grid x:Name="GridForListView" Margin="10" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <BoxView BackgroundColor="Teal" Grid.Row="0" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="1" Margin="5"></BoxView>
+                                        <BoxView BackgroundColor="Teal" Grid.Row="2" Margin="5"></BoxView>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+
+                            <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+                                <Label Text="Choose property to display on tile" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="#888"/>
+                                <Picker x:Name="propertyPicker" Title="Choose property" HorizontalOptions="FillAndExpand"  
+                                    SelectedIndexChanged="PropertyPicker_SelectedIndexChanged" 
+                                    ItemsSource="{Binding Propertylist}"
+                                    ItemDisplayBinding="{Binding ColumnLabel}"
+                                    SelectedItem="{Binding SelectedProperty}"/>
+
+                                <Grid RowSpacing="10" Margin="0,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <Button Grid.Row="0" Text="DB Backup" BorderWidth="1" HeightRequest="50" Command="{Binding BackupDatabase}" CommandParameter="{Binding}"/>
+                                    <Button Grid.Row="1" Text="DB Restore" BorderWidth="1" HeightRequest="50" Command="{Binding RestoreDatabase}" CommandParameter="{Binding}"/>
+                                </Grid>
+                            </StackLayout>
+
+                        </Grid>
+
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <!--If Popups needed-->
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
